@@ -1,0 +1,24 @@
+<div class="content">
+    <div class="upperSide">
+        <div class="logo">
+            <img src="../../../../assets/icons/DigitArt_Logo.png" />
+            <div class="title">DigitArt</div>
+            <span>Think classic lorem ipsum is passé? Give your next project a bit more edge.</span>
+        </div>
+        <div class="formContainer" [formGroup]="loginForm">
+            <div class="form">
+                <dga-input class="col-md-10" widthClass="col-md-12" type="text" placeholder="Username" [form]="loginForm" controlName="username"></dga-input>
+                <dga-input class="col-md-10" widthClass="col-md-12" type="password" placeholder="Password" [form]="loginForm" controlName="password"></dga-input>
+            </div>
+            <div class="submitForm">
+                <button class="col-md-10">Log In</button>
+                <a href="#">Forgot password ?</a>
+            </div>
+            <hr class="col-md-8">
+            <div class="newAccount">
+                <button class="col-md-10" (click)="openRegisterDialog()">Create New Account</button>
+            </div>
+        </div>
+    </div>
+    <div class="lowerSide"></div>
+</div>

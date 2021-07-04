@@ -1,0 +1,52 @@
+<h2 mat-dialog-title>
+    Sign Up
+    <mat-icon mat-dialog-close aria-hidden="false" aria-label="Example home icon">close</mat-icon>
+</h2>
+<hr>
+<mat-dialog-content>
+    <div class="registerForm" [formGroup]="registerForm">
+        <div class="row">
+            <dga-input class="col-md-6" widthClass="col-md-12" type="text" placeholder="First Name"
+                [form]="registerForm" controlName="name" [required]="true"></dga-input>
+            <dga-input class="col-md-6" widthClass="col-md-12" type="text" placeholder="Last Name" [form]="registerForm"
+                controlName="surname" [required]="true"></dga-input>
+        </div>
+        <div class="row">
+            <dga-input class="col-md-12" widthClass="col-md-12" type="email" placeholder="Email" [form]="registerForm"
+                controlName="emailAddress" [required]="true"></dga-input>
+        </div>
+        <div class="row" [formGroup]="registerForm.controls.credential">
+            <dga-input class="col-md-12" widthClass="col-md-12" type="text" placeholder="Username"
+                [form]="registerForm.controls.credential" controlName="username" [required]="true"></dga-input>
+        </div>
+        <div class="row" [formGroup]="registerForm.controls.credential">
+            <dga-input class="col-md-12" widthClass="col-md-12" type="password" placeholder="New Password"
+                [form]="registerForm.controls.credential" controlName="password" [required]="true"></dga-input>
+        </div>
+        <div class="row">
+            <dga-input class="col-md-6" widthClass="col-md-12" type="date" placeholder="BirthDay" [form]="registerForm"
+                controlName="dateOfBirth" [required]="true"></dga-input>
+            <dga-input class="col-md-6" widthClass="col-md-12" type="select" placeholder="Category"
+                [selectOptions]="[{key:'Musician', value:'MUSICIAN'}, {key:'Singer', value:'SINGER'}, {key:'Painter', value:'PAINTER'}]"
+                [form]="registerForm" controlName="category" [required]="true"></dga-input>
+        </div>
+        <div class="row">
+            <dga-input class="col-md-12" widthClass="col-md-12" type="text" placeholder="Phone Number"
+                [form]="registerForm" controlName="phoneNumber" [required]="true"></dga-input>
+        </div>
+        <div class="row">
+            <dga-input class="col-md-12" widthClass="col-md-12" type="text" placeholder="Address" [form]="registerForm"
+                controlName="address" [required]="true"></dga-input>
+        </div>
+        <div class="row">
+            <dga-input class="col-md-12" widthClass="col-md-12" type="radio" placeholder="Gender"
+                [radioInputs]="[{key: 'Male', value:'MALE'}, {key: 'Female', value:'FEMALE'}, {key: 'Other', value:'OTHER'}]"
+                [form]="registerForm" controlName="gender" [required]="true"></dga-input>
+        </div>
+    </div>
+</mat-dialog-content>
+<hr>
+<mat-dialog-actions align="center">
+    <button mat-button cdkFocusInitial class="col-md-12" [ngClass]="{disabled: registerForm.invalid}"
+        [disabled]="registerForm.invalid" (click)="register()">Sign Up</button>
+</mat-dialog-actions>

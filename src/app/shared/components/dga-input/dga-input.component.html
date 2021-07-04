@@ -1,0 +1,74 @@
+<div [formGroup]="form" [ngSwitch]="type">
+
+
+    <div *ngSwitchCase="'text'">
+        <input class="{{widthClass}}" type="text" placeholder="{{placeholder}}" formControlName="{{controlName}}"
+            [required]="required" />
+    </div>
+
+
+    <div *ngSwitchCase="'password'">
+        <input class="{{widthClass}}" type="password" placeholder="{{placeholder}}" formControlName="{{controlName}}"
+            [required]="required" />
+    </div>
+
+    <div *ngSwitchCase="'email'">
+        <input class="{{widthClass}}" type="email" placeholder="{{placeholder}}" formControlName="{{controlName}}"
+            [required]="required" />
+    </div>
+
+
+    <div *ngSwitchCase="'number'">
+        <input class="{{widthClass}}" type="number" placeholder="{{placeholder}}" formControlName="{{controlName}}"
+            [required]="required" />
+    </div>
+
+    <div *ngSwitchCase="'date'">
+        <input class="{{widthClass}}" type="{{dateType}}" (focus)="dateType='date'" (blur)="dateType='text'"
+            placeholder="{{placeholder}}" formControlName="{{controlName}}" [required]="required" />
+    </div>
+
+
+    <div *ngSwitchCase="'checkbox'">
+        <label for="{{placeholder}}" *ngIf="(side && side==='left') || !side">{{placeholder}}</label>
+
+        <input type="checkbox" name="{{placeholder}}" id="{{placeholder}}" formControlName="{{controlName}}"
+            [required]="required" />
+
+        <label for="{{placeholder}}" *ngIf="side && side==='right'">{{placeholder}}</label>
+    </div>
+
+
+    <div *ngSwitchCase="'radio'" class="radio {{widthClass}}">
+        <label>{{placeholder}}</label>
+        <div class="radioGroup">
+            <div *ngFor="let input of radioInputs" class="radio-content">
+                <label for="{{input}}" *ngIf="(side && side==='left') || !side">{{input.value ? input.value :
+                    input}}</label>
+
+                <input type="radio" id="{{input}}" value="{{input.value ? input.value : input}}" name="{{controlName}}"
+                    formControlName="{{controlName}}" (change)="log()" [required]="required" />
+
+                <label for="{{input}}" *ngIf="side && side==='right'">{{input.value ? input.value : input}}</label>
+            </div>
+        </div>
+    </div>
+
+
+    <div *ngSwitchCase="'select'">
+        <select class="{{widthClass}}" name="{{placeholder}}" id="{{placeholder}}" formControlName="{{controlName}}"
+            [required]="required">
+            <option value="null" selected [style.display]="'none'">{{placeholder}}</option>
+            <option *ngFor="let option of selectOptions" value="{{option.value ? option.value : option}}">
+                {{option.value ? option.value : option}}
+            </option>
+        </select>
+    </div>
+
+
+    <div *ngSwitchCase="'textArea'">
+        <input type="text" placeholder="{{placeholder}}" formControlName="formControlName" [required]="required" />
+    </div>
+
+
+</div>
