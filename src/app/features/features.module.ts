@@ -21,6 +21,9 @@ import { CredentialsService } from '../core/services/credential.service';
   providers: [
     UserProfileService,
     CredentialsService
+  ],
+  entryComponents: [
+    RegisterComponent
   ]
 })
 export class FeaturesModule { }

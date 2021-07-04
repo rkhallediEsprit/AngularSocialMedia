@@ -22,10 +22,6 @@ export class LoginComponent implements OnInit {
 
 
   openRegisterDialog() {
-    this.dialog.open(RegisterComponent, {
-      data: {
-        animal: 'panda'
-      }
-    });
+    this.dialog.open(RegisterComponent);
   }
 }

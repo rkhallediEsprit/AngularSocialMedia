@@ -5,13 +5,13 @@ import { LoginComponent } from './components/login/login.component';
 
 const routes: Routes = [
     {
-        path:'login',
+        path: 'login',
         component: LoginComponent
     }
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+    imports: [RouterModule.forChild(routes)],
+    exports: [RouterModule]
 })
 export class FeaturesRountingModule { }
