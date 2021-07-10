@@ -1,0 +1,16 @@
+.grid-container {
+  width: 100vw;
+  height: 93vh;
+  max-height: 93vh;
+  display: grid;
+  grid-template-columns: 20% 60% 20%;
+  background-color: #f0f2f5;
+  // padding: 10px;
+  .grid-item {
+    background-color: rgba(255, 255, 255, 0.8);
+    // border: 1px solid rgba(0, 0, 0, 0.8);
+    // padding: 20px;
+    font-size: 30px;
+    text-align: center;
+  }
+}
