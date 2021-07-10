@@ -45,6 +45,7 @@ import {MatListModule} from '@angular/material';
     MatAutocompleteModule,
     MatCardModule,
     MatListModule,
+    HttpResponseDialogComponent,
 
 
     SpinnerComponent
