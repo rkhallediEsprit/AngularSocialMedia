@@ -1,40 +1,30 @@
-import { HttpErrorResponse, HttpEvent, HttpHandler, HttpRequest, HttpResponse } from '@angular/common/http';
+import { HttpEvent, HttpHandler, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-import { Observable, throwError } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { AuthenticationService } from './authentication.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RequestInterceptorService {
 
-  cloneRequest: HttpRequest<any>;
+  constructor(private authenticationService: AuthenticationService) { }
 
-  constructor(private router: Router) { }
-
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    let headers = req.headers.append('Accept: "*/*"', 'no-cahe');
-    headers = req.headers.append('Cache-control', 'no-store');
-    headers = req.headers.append('Expires', '0');
-    headers = req.headers.append('Pragma', 'no-cache');
-    headers = req.headers.append('Content-type', 'application/json');
-
-    this.cloneRequest = req.clone();
-
-    return next.handle(this.cloneRequest).pipe(
-      tap((httpEvent: HttpEvent<any>) => {
-        if(httpEvent instanceof HttpResponse) {
-          const body = httpEvent.body;
+  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    let headers = request.headers.append('Accept: "*/*"', 'no-cahe');
+    headers = request.headers.append('Cache-control', 'no-store');
+    headers = request.headers.append('Expires', '0');
+    headers = request.headers.append('Pragma', 'no-cache');
+    headers = request.headers.append('Content-type', 'application/json');
+    let currentToken = this.authenticationService.currentTokenValue;
+    if (currentToken) {
+      request = request.clone({
+        setHeaders: {
+          Authorization: `Bearer ${currentToken}`
         }
-      }),
-      catchError((err: HttpErrorResponse) => {
-        console.log(err)
-        if(err.status === 401 || err.status === 403){
-          this.router.navigateByUrl('/');
-        }
-        return throwError(err);
-      })
-    )
+      });
+    }
+
+    return next.handle(request);
   }
 }

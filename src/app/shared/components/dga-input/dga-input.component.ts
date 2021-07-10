@@ -1,5 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
 
 @Component({
   selector: 'dga-input',
@@ -18,14 +20,40 @@ export class DgaInputComponent implements OnInit {
   @Input() radioInputs: string[] | KeyValue[];
   @Input() form: FormGroup;
   @Input() controlName: string;
+  @Input() options: any[];
+  @Output() value = new EventEmitter();
+  filteredOptions: Observable<any[]>;
   dateType: string = "text";
   constructor() { }
 
-  ngOnInit() {    
+  ngOnInit() {
+    if (this.type === "autoComplete") {
+      this.form.controls[this.controlName].valueChanges.subscribe(value => {
+        this.value.emit(value);
+      })
+      this.filteredOptions = this.form.controls[this.controlName].valueChanges.pipe(
+        startWith(''),
+        map(value => this._filter(value))
+      );
+    }
   }
 
-  log(){
-    console.log(this.form.controls[this.controlName].value);    
+  private _filter(value: string): string[] {
+    if (!value['surname'] && !value['name']) {
+      const filterValue = value.toLowerCase();
+      return this.options.filter(option => option.name ? option.name.toLowerCase().includes(filterValue) : option.surname.toLowerCase().includes(filterValue));
+    } else {
+      const filterValue = value;
+      return this.options.filter(option => option.name.toLowerCase().includes(filterValue) || option.surname.toLowerCase().includes(filterValue));
+    }
+  }
+
+  public displayWith(option): string {
+    return option ? (option['name'] + " " + option["surname"]) : option;
+  }
+
+  log(value) {
+    console.log(value);
   }
 
 }

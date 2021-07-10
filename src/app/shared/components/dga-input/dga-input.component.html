@@ -70,5 +70,16 @@
         <input type="text" placeholder="{{placeholder}}" formControlName="formControlName" [required]="required" />
     </div>
 
+    <div *ngSwitchCase="'autoComplete'">
+        <input type="text" placeholder="{{placeholder}}" matInput formControlName="{{controlName}}"
+            [matAutocomplete]="auto" class="{{widthClass}}">
+        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" [displayWith]="displayWith">
+            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                {{option["name"]+" "+option["surname"]}}
+            </mat-option>
+        </mat-autocomplete>
+
+    </div>
+
 
 </div>

@@ -25,6 +25,9 @@ export class UserProfileService {
     return this.http.get<UserProfile>(`${BASE_PATH}/user_profiles/${id}`);
   }
 
+  getUserByCredentialUsername(username: string): Observable<UserProfile> {
+    return this.http.get<UserProfile>(`${BASE_PATH}/userByCredentialUsername/${username}`);
+  }
 
   createUsers(user: UserProfile): Observable<UserProfile> {
     return this.http.post<UserProfile>(`${BASE_PATH}/user_profiles`, user);

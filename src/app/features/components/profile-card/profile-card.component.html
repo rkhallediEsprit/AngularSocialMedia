@@ -1,0 +1,13 @@
+<mat-card class="example-card">
+    <mat-card-content>
+        <div class="profile-header">
+            <div class="example-header-image"></div>
+        </div>
+        <mat-card-title>{{currentUser?.name+ " " +currentUser?.surname | titlecase}}</mat-card-title>
+        <mat-card-subtitle>{{userUsername | titlecase}}</mat-card-subtitle>
+        <hr>
+        <p>
+            {{currentUser?.bio}}
+        </p>
+    </mat-card-content>
+</mat-card>

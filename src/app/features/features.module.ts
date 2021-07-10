@@ -7,11 +7,14 @@ import { RegisterComponent } from './components/register/register.component';
 import { UserProfileService } from '../core/services/user-profile.service';
 import { HttpClientModule } from '@angular/common/http';
 import { CredentialsService } from '../core/services/credential.service';
+import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
+import { HomeComponent } from './components/home/home.component';
+import { ProfileCardComponent } from './components/profile-card/profile-card.component';
 
 
 
 @NgModule({
-  declarations: [LoginComponent, RegisterComponent],
+  declarations: [LoginComponent, RegisterComponent, HomeComponent, ProfileCardComponent],
   imports: [
     CommonModule,
     FeaturesRountingModule,

@@ -73,6 +73,11 @@
                     font-size: 22px;
                     border-radius: 4px;
                 }
+                .disabled {
+                    background: gray;
+                    cursor: default;
+                    pointer-events: none;
+                }
                 a {
                     text-decoration: none;
                     font-family: cursive;

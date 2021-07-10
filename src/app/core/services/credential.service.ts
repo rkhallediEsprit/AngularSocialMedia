@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Credentials } from '../models/credentials.model';
+import * as bcrypt from 'bcryptjs';
 
 const BASE_PATH = environment.baseBath;
 
@@ -25,13 +26,14 @@ export class CredentialsService {
     return this.http.get<Credentials>(`${BASE_PATH}/credentials/${id}`);
   }
 
-
   createCredential(credential: Credentials): Observable<Credentials> {
+    credential.password =  bcrypt.hashSync(credential.password, 12);
     return this.http.post<Credentials>(`${BASE_PATH}/credentials`, credential);
   }
 
 
   updateCredential(id: number, credential: Credentials): Observable<Credentials> {
+    credential.password =  bcrypt.hashSync(credential.password, 12);
     return this.http.put<Credentials>(`${BASE_PATH}/credentials/${id}`, credential);
   }
 

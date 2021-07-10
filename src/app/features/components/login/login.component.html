@@ -1,3 +1,4 @@
+<spinner *ngIf="loading"></spinner>
 <div class="content">
     <div class="upperSide">
         <div class="logo">
@@ -7,12 +8,15 @@
         </div>
         <div class="formContainer" [formGroup]="loginForm">
             <div class="form">
-                <dga-input class="col-md-10" widthClass="col-md-12" type="text" placeholder="Username" [form]="loginForm" controlName="username"></dga-input>
-                <dga-input class="col-md-10" widthClass="col-md-12" type="password" placeholder="Password" [form]="loginForm" controlName="password"></dga-input>
+                <dga-input class="col-md-10" widthClass="col-md-12" type="text" placeholder="Username"
+                    [form]="loginForm" controlName="username" [required]="true"></dga-input>
+                <dga-input class="col-md-10" widthClass="col-md-12" type="password" placeholder="Password"
+                    [form]="loginForm" controlName="password" [required]="true"></dga-input>
             </div>
             <div class="submitForm">
-                <button class="col-md-10">Log In</button>
-                <a href="#">Forgot password ?</a>
+                <button class="col-md-10" [ngClass]="{disabled: loginForm.invalid}"
+                [disabled]="loginForm.invalid" (click)="login()">Log In</button>
+                <!-- <a href="#">Forgot password ?</a> -->
             </div>
             <hr class="col-md-8">
             <div class="newAccount">

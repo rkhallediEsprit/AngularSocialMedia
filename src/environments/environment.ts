@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  baseBath: 'http://127.0.0.1:8000/api'
+  baseBath: 'http://localhost:8000/api'
 };
 
 /*
