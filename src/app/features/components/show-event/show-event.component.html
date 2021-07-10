@@ -1,0 +1,20 @@
+<h2 mat-dialog-title>
+    <mat-icon>info</mat-icon><span> Event details</span>    <mat-icon mat-dialog-close aria-hidden="false" aria-label="Example home icon">close</mat-icon>
+</h2>
+<hr>
+<mat-dialog-content>
+   <div class='show-event'>
+<h6>Event's Name</h6> {{data?.eventName}} <hr>
+<h6> Event location: </h6> {{data?.location}} <hr>
+<h6>Event's date: </h6>  {{data?.dateOfEvent}} <hr>
+<h6> description: </h6> {{data?.description}} <hr>
+<h6>Participants</h6>
+<div class='participants'>
+<ul *ngFor='let partipant of data.participants' >
+    <a href=""><img [src]='partipant.profilePicture' alt="icon" /></a>
+    <li class='participant'>{{partipant.surname}}</li>
+  </ul>
+   </div>
+</div>
+</mat-dialog-content>
+<hr>

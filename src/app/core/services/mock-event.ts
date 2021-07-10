@@ -1,0 +1,235 @@
+import { Event } from "../models/event.model";
+
+export const EVENT: Event[] = [
+  {
+    id: 1234,
+    eventName: "guitare atelier",
+    dateOfEvent: "2021-08-01",
+    location: "Sidi boussaid",
+    eventPicture: "assets/guitare.jpg",
+    description:
+      "Même si la situation sanitaire est encore incertaine, il est indéniable que nous espérons tous vivre un été musical ! Aussi, afin de profiter de nos festivals de façon un peu plus « normale », nous annonçons aujourd’hui que le Festival International de Jazz de Montréal sera présenté du 15 au 19 septembre sur la place des Festivals.",
+    userProfile: {
+      id: 123,
+      name: "myriam",
+      surname: "msmida",
+      profilePicture: "assets/guitariste.jpg",
+    },
+    participants: [
+      {
+        id: 123,
+        name: "Adel Barnat",
+        surname: "abarnat",
+        profilePicture: "assets/tableau.jpg",
+      },
+      {
+        id: 123,
+        name: "Adel Barnat",
+        surname: "abarnat",
+        profilePicture: "assets/tableau.jpg",
+      },
+      {
+        id: 123,
+        name: "Adel Barnat",
+        surname: "abarnat",
+        profilePicture: "assets/tableau.jpg",
+      },
+      {
+        id: 123,
+        name: "Adel Barnat",
+        surname: "abarnat",
+        profilePicture: "assets/tableau.jpg",
+      },
+      {
+        id: 123,
+        name: "Adel Barnat",
+        surname: "abarnat",
+        profilePicture: "assets/tableau.jpg",
+      },
+      {
+        id: 123,
+        name: "Adel Barnat",
+        surname: "abarnat",
+        profilePicture: "assets/tableau.jpg",
+      },
+      {
+        id: 123,
+        name: "Adel Barnat",
+        surname: "abarnat",
+        profilePicture: "assets/tableau.jpg",
+      },
+      {
+        id: 123,
+        name: "Adel Barnat",
+        surname: "abarnat",
+        profilePicture: "assets/tableau.jpg",
+      },
+      {
+        id: 123,
+        name: "Adel Barnat",
+        surname: "abarnat",
+        profilePicture: "assets/tableau.jpg",
+      },
+      {
+        id: 123,
+        name: "Adel Barnat",
+        surname: "abarnat",
+        profilePicture: "assets/tableau.jpg",
+      },
+      {
+        id: 123,
+        name: "Adel Barnat",
+        surname: "abarnat",
+        profilePicture: "assets/tableau.jpg",
+      },
+      {
+        id: 123,
+        name: "Adel Barnat",
+        surname: "abarnat",
+        profilePicture: "assets/tableau.jpg",
+      },
+      {
+        id: 123,
+        name: "Adel Barnat",
+        surname: "abarnat",
+        profilePicture: "assets/tableau.jpg",
+      },
+      {
+        id: 123,
+        name: "Adel Barnat",
+        surname: "abarnat",
+        profilePicture: "assets/tableau.jpg",
+      },
+      {
+        id: 123,
+        name: "Adel Barnat",
+        surname: "abarnat",
+        profilePicture: "assets/tableau.jpg",
+      },
+    ],
+  },
+  {
+    id: 1234,
+    eventName: "peinture atelier",
+    dateOfEvent: "2021-08-20",
+    location: "Sidi boussaid",
+    description:
+      "Un Atelier dessin-peinture enfant à partir de 3 ans ! C est ce que vous propose l atelier de peinture l’illusion … vues d’ailleurs, un atelier d’artiste en plein coeur de Paris !Dans un véritable atelier de peinture, au sein d’un petit groupe, votre enfant partagera  l’expérience d’une activité créative et ludique.L Atelier dessin-peinture enfant lui permettra de développer son regard, son habilité et son sens artistique tout en apprenant les techniques de la peinture.",
+    eventPicture: "assets/peinturee.jpg",
+    userProfile: {
+      id: 123,
+      name: "Adel Barnat",
+      surname: "abarnat",
+      profilePicture: "assets/tableau.jpg",
+    },
+    participants: [
+      {
+        id: 123,
+        name: "Adel Barnat",
+        surname: "abarnat",
+        profilePicture: "assets/tableau.jpg",
+      },
+      {
+        id: 123,
+        name: "Adel Barnat",
+        surname: "abarnat",
+        profilePicture: "assets/tableau.jpg",
+      },
+      {
+        id: 123,
+        name: "Adel Barnat",
+        surname: "abarnat",
+        profilePicture: "assets/tableau.jpg",
+      },
+    ],
+  },
+  {
+    id: 1234,
+    eventName: "dance",
+    dateOfEvent: "2021-08-25",
+    location: "Sidi boussaid",
+    description:
+      "Un Atelier dessin-peinture enfant à partir de 3 ans ! C est ce que vous propose l atelier de peinture l’illusion … vues d’ailleurs, un atelier d’artiste en plein coeur de Paris !Dans un véritable atelier de peinture, au sein d’un petit groupe, votre enfant partagera  l’expérience d’une activité créative et ludique.L Atelier dessin-peinture enfant lui permettra de développer son regard, son habilité et son sens artistique tout en apprenant les techniques de la peinture.",
+    eventPicture: "assets/tableau.jpg",
+    userProfile: {
+      id: 123,
+      name: "myriam",
+      surname: "msmida",
+      profilePicture: "assets/jazz-chanteur.jpg",
+    },
+    participants: [
+      {
+        id: 123,
+        name: "Adel Barnat",
+        surname: "abarnat",
+        profilePicture: "assets/tableau.jpg",
+      },
+      {
+        id: 123,
+        name: "Adel Barnat",
+        surname: "abarnat",
+        profilePicture: "assets/tableau.jpg",
+      },
+      {
+        id: 123,
+        name: "Adel Barnat",
+        surname: "abarnat",
+        profilePicture: "assets/tableau.jpg",
+      },
+      {
+        id: 123,
+        name: "Adel Barnat",
+        surname: "abarnat",
+        profilePicture: "assets/tableau.jpg",
+      },
+      {
+        id: 123,
+        name: "Adel Barnat",
+        surname: "abarnat",
+        profilePicture: "assets/tableau.jpg",
+      },
+      {
+        id: 123,
+        name: "Adel Barnat",
+        surname: "abarnat",
+        profilePicture: "assets/tableau.jpg",
+      },
+      {
+        id: 123,
+        name: "Adel Barnat",
+        surname: "abarnat",
+        profilePicture: "assets/tableau.jpg",
+      },
+      {
+        id: 123,
+        name: "Adel Barnat",
+        surname: "abarnat",
+        profilePicture: "assets/tableau.jpg",
+      },
+      {
+        id: 123,
+        name: "Adel Barnat",
+        surname: "abarnat",
+        profilePicture: "assets/tableau.jpg",
+      },
+      {
+        id: 123,
+        name: "Adel Barnat",
+        surname: "abarnat",
+        profilePicture: "assets/tableau.jpg",
+      },
+      {
+        id: 123,
+        name: "Adel Barnat",
+        surname: "abarnat",
+        profilePicture: "assets/tableau.jpg",
+      },
+      {
+        id: 123,
+        name: "Adel Barnat",
+        surname: "abarnat",
+        profilePicture: "assets/tableau.jpg",
+      },
+    ],
+  },
+];

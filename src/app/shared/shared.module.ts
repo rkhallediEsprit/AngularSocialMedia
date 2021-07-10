@@ -1,12 +1,11 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { DgaInputComponent } from './components/dga-input/dga-input.component';
-import { ReactiveFormsModule } from '@angular/forms';
-import {MatDialogModule} from '@angular/material/dialog';
-import {MatIconModule} from '@angular/material/icon';
-
-
-
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { DgaInputComponent } from "./components/dga-input/dga-input.component";
+import { ReactiveFormsModule } from "@angular/forms";
+import { MatDialogModule } from "@angular/material/dialog";
+import { MatIconModule } from "@angular/material/icon";
+import { MatCardModule } from "@angular/material/card";
+import { MatListModule, MatMenuModule } from "@angular/material";
 
 @NgModule({
   declarations: [DgaInputComponent],
@@ -15,22 +14,26 @@ import {MatIconModule} from '@angular/material/icon';
     ReactiveFormsModule,
 
     /*
-     *Angular Material Modules 
-    */
-     MatDialogModule,
-     MatIconModule
-
+     *Angular Material Modules
+     */
+    MatDialogModule,
+    MatIconModule,
+    MatCardModule,
+    MatMenuModule,
+    MatListModule,
   ],
   exports: [
     DgaInputComponent,
     ReactiveFormsModule,
-    
-    /*
-     *Angular Material Modules 
-    */
-     MatDialogModule,
-     MatIconModule
 
-  ]
+    /*
+     *Angular Material Modules
+     */
+    MatDialogModule,
+    MatIconModule,
+    MatCardModule,
+    MatMenuModule,
+    MatListModule,
+  ],
 })
-export class SharedModule { }
+export class SharedModule {}
