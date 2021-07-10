@@ -4,7 +4,7 @@ import { DgaInputComponent } from './components/dga-input/dga-input.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatIconModule} from '@angular/material/icon';
-
+import {MatCardModule} from '@angular/material/card';
 
 
 
@@ -18,7 +18,8 @@ import {MatIconModule} from '@angular/material/icon';
      *Angular Material Modules 
     */
      MatDialogModule,
-     MatIconModule
+     MatIconModule,
+     MatCardModule
 
   ],
   exports: [
@@ -29,7 +30,8 @@ import {MatIconModule} from '@angular/material/icon';
      *Angular Material Modules 
     */
      MatDialogModule,
-     MatIconModule
+     MatIconModule,
+     MatCardModule
 
   ]
 })

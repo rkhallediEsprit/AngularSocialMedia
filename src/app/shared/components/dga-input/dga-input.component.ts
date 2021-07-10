@@ -18,6 +18,7 @@ export class DgaInputComponent implements OnInit {
   @Input() radioInputs: string[] | KeyValue[];
   @Input() form: FormGroup;
   @Input() controlName: string;
+  @Input() styles :object;
   dateType: string = "text";
   constructor() { }
 

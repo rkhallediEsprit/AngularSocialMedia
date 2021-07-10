@@ -7,11 +7,14 @@ import { RegisterComponent } from './components/register/register.component';
 import { UserProfileService } from '../core/services/user-profile.service';
 import { HttpClientModule } from '@angular/common/http';
 import { CredentialsService } from '../core/services/credential.service';
+import { PostComponent } from './components/post/post.component';
+import { PostCardComponent } from './components/post-card/post-card.component';
+import { PostService } from '../core/services/post.service';
 
 
 
 @NgModule({
-  declarations: [LoginComponent, RegisterComponent],
+  declarations: [LoginComponent, RegisterComponent, PostComponent, PostCardComponent],
   imports: [
     CommonModule,
     FeaturesRountingModule,
@@ -20,7 +23,8 @@ import { CredentialsService } from '../core/services/credential.service';
   ],
   providers: [
     UserProfileService,
-    CredentialsService
+    CredentialsService,
+    PostService
   ],
   entryComponents: [
     RegisterComponent

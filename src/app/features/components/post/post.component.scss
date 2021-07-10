@@ -1,0 +1,79 @@
+.UserName {
+    font: bold;
+    font-size: 22px;
+    color: #384949;
+    font-weight: bold;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 10px 0;
+    dga-input:first-child {
+        margin-bottom: 10px;
+    }
+    ::placeholder(description) {
+        position: relative;
+      }
+}
+h2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.formContainer {
+    background-color: white;
+    width: 100%;
+    padding: 50px 0;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: left;
+
+    .form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        padding: 10px 0;
+        dga-input:first-child {
+            margin-bottom: 10px;
+        }
+        ::placeholder(description) {
+            position: relative;
+          }
+        }
+    }
+
+    .submitForm {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        padding: 20px 0;
+        button {
+            margin-bottom: 10px;
+            height: 50px;
+            border: none;
+            color: #efe4d0;
+            background: #384949;
+            font-size: 22px;
+            border-radius: 4px;
+        }
+        a {
+            text-decoration: none;
+            font-family: cursive;
+            color: #384949;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    }
