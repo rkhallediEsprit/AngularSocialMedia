@@ -7,8 +7,8 @@
     </div>
 
     <div *ngSwitchCase="'textarea'">
-        <input class="{{widthClass}}" [ngStyle]="styles" type="textarea" placeholder="{{placeholder}}" formControlName="{{controlName}}"
-            [required]="required" />
+        <textarea class="{{widthClass}}" placeholder="{{placeholder}}" formControlName="{{controlName}}"
+        [required]="required"></textarea>
     </div>
 
     <div *ngSwitchCase="'file'">

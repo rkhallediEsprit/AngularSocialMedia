@@ -9,33 +9,29 @@ import { HomeComponent } from './components/home/home.component';
 import { AuthGuard } from '../core/guards/auth.guard';
 
 const routes: Routes = [
-    { path: '', redirectTo: '/home', pathMatch: 'full' },
-    { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
   {
     path: "login",
     component: LoginComponent,
   },
   {
-    path: "event",
-    component: EventDashboardComponent,
+    path: 'home',
+    component: HomeComponent,
+    canActivate: [AuthGuard]
   },
-    {
-        path: 'post',
-        component: PostComponent
-    },
-    {
-        path: 'postCard',
-        component: PostCardComponent
-    },
-    {
-        path: 'home',
-        component: HomeComponent,
-        canActivate: [AuthGuard]
-    }
+  {
+    path: 'post',
+    component: PostComponent
+  },
+  {
+    path: 'postCard',
+    component: PostCardComponent
+  }
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class FeaturesRountingModule {}
+export class FeaturesRountingModule { }

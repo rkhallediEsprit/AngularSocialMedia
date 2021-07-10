@@ -26,7 +26,9 @@ import { ProfileCardComponent } from './components/profile-card/profile-card.com
     PostComponent,
     PostCardComponent,
     ProfileCardComponent,
-    HomeComponent
+    HomeComponent,
+    EventComponent,
+    EventDashboardComponent,
   ],
   imports: [
     CommonModule,
@@ -35,6 +37,6 @@ import { ProfileCardComponent } from './components/profile-card/profile-card.com
     HttpClientModule,
   ],
   providers: [UserProfileService, CredentialsService, PostService],
-  entryComponents: [RegisterComponent, CreateEditEventComponent],
+  entryComponents: [RegisterComponent, CreateEditEventComponent, ShowEventComponent],
 })
 export class FeaturesModule { }

@@ -29,7 +29,7 @@ export class EventComponent implements OnInit {
     console.log(this.data);
     this.dialog.open(ShowEventComponent, {
       data: this.data,
-      width: "500px",
+      width: "600px",
     });
   }
 }

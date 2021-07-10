@@ -15,11 +15,13 @@ export class PostComponent implements OnInit {
   });
   stylesCss = {
     'height': '500px'
-
   };
 
-  //constructor() { }
+  userProfile = JSON.parse(localStorage.getItem('currentUser'));
+  username = JSON.parse(localStorage.getItem('loggedInUser'));
+
   constructor(private postService: PostService) { }
+
   ngOnInit() {
   }
 
@@ -31,7 +33,9 @@ export class PostComponent implements OnInit {
       post[key] = this.postForm.value[key];
     });
     post.dateOfPublishing = new Date();
-    post.userProfile = "/api/user_profiles/1";
-    this.postService.createPosts(post).subscribe();
+    post.userProfile = `/api/user_profiles/${this.userProfile.id}`;
+    this.postService.createPosts(post).subscribe(res => {
+      this.postForm.reset();
+    });
   }
 }
