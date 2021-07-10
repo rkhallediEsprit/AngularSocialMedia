@@ -99,3 +99,25 @@
         }
     }
 }
+
+@media (max-width: 1800px) {
+    .content {
+        .upperSide {
+            padding: 100px 350px;
+        }
+    }
+}
+@media (max-width: 1600px) {
+    .content {
+        .upperSide {
+            padding: 100px 250px;
+        }
+    }
+}
+@media (max-width: 1400px) {
+    .content {
+        .upperSide {
+            padding: 100px 150px;
+        }
+    }
+}

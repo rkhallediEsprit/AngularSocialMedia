@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Credentials } from 'src/app/core/models/credentials.model';
 import { UserProfile } from 'src/app/core/models/user-profile.model';
 import { CredentialsService } from 'src/app/core/services/credential.service';
@@ -30,7 +30,7 @@ export class RegisterComponent implements OnInit {
     })
   })
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private userProfileService: UserProfileService, private credentialsService: CredentialsService) { }
+  constructor(private dialogRef: MatDialogRef<RegisterComponent>, @Inject(MAT_DIALOG_DATA) public data: any, private userProfileService: UserProfileService, private credentialsService: CredentialsService) { }
 
   ngOnInit() {
     console.log(this.registerForm);
@@ -58,7 +58,7 @@ export class RegisterComponent implements OnInit {
     this.credentialsService.createCredential(credential).subscribe(res => {
       userProfile.credential = `/api/credentials/${res.id}`;
       this.userProfileService.createUsers(userProfile).subscribe(response => {
-        console.log(res);
+        this.dialogRef.close();
       });
     })
   }
