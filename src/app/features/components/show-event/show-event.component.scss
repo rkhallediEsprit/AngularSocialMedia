@@ -1,0 +1,45 @@
+h2 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+mat-icon {
+  cursor: pointer;
+}
+.participants {
+  overflow-y: scroll;
+  overflow-x: hidden;
+  ul {
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 5px;
+    img {
+      border-radius: 50%;
+      width: 50px;
+    }
+    a {
+      margin-right: 8px;
+    }
+  }
+  li {
+    font-size: 14px;
+  }
+  height: 100px;
+}
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  //outline: 1px solid slategrey;
+  border-radius: 5px;
+}

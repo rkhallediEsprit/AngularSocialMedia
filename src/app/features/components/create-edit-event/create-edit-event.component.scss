@@ -1,0 +1,31 @@
+h2 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+mat-icon {
+  cursor: pointer;
+}
+
+mat-dialog-actions {
+  padding: 20px;
+  button {
+    margin-bottom: 10px;
+    height: 50px;
+    border: none;
+    color: #efe4d0;
+    background: #384949;
+    font-size: 22px;
+    border-radius: 4px;
+  }
+  .disabled {
+    background-color: gray;
+    cursor: default;
+    pointer-events: none;
+  }
+}
+
+dga-input {
+  margin-bottom: 20px;
+}

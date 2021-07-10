@@ -1,0 +1,12 @@
+<p class="UserName">User Profile</p>
+<div class="formContainer" [formGroup]="postForm">
+    <div class="form">
+        <dga-input class="col-md-10" [styles]="stylesCss" widthClass="col-md-12" type="textarea"
+            placeholder="description" [form]="postForm" controlName="description"></dga-input>
+        <input class="col-md-10" type="file" id="file">
+    </div>
+    <div class="submitForm">
+        <button class="col-md-10" [ngClass]="{disabled:postForm.invalid}" [disabled]="postForm.invalid"
+            (click)="postSubmit()">Post</button>
+    </div>
+</div>

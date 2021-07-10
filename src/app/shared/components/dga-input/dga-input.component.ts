@@ -20,6 +20,7 @@ export class DgaInputComponent implements OnInit {
   @Input() radioInputs: string[] | KeyValue[];
   @Input() form: FormGroup;
   @Input() controlName: string;
+  @Input() styles :object;
   @Input() options: any[];
   @Output() value = new EventEmitter();
   filteredOptions: Observable<any[]>;

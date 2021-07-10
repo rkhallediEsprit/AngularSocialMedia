@@ -10,6 +10,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatCardModule} from '@angular/material/card';
+import {MatListModule} from '@angular/material';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import {MatCardModule} from '@angular/material/card';
     MatMenuModule,
     MatFormFieldModule,
     MatAutocompleteModule,
-    MatCardModule
+    MatCardModule,
+    MatListModule
 
   ],
   exports: [
@@ -42,6 +44,7 @@ import {MatCardModule} from '@angular/material/card';
     MatFormFieldModule,
     MatAutocompleteModule,
     MatCardModule,
+    MatListModule,
 
 
     SpinnerComponent

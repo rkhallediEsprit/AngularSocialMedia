@@ -6,6 +6,16 @@
             [required]="required" />
     </div>
 
+    <div *ngSwitchCase="'textarea'">
+        <input class="{{widthClass}}" [ngStyle]="styles" type="textarea" placeholder="{{placeholder}}" formControlName="{{controlName}}"
+            [required]="required" />
+    </div>
+
+    <div *ngSwitchCase="'file'">
+        <input class="{{widthClass}}" type="file" placeholder="{{placeholder}}" formControlName="{{controlName}}"
+            [required]="required" />
+    </div>
+
 
     <div *ngSwitchCase="'password'">
         <input class="{{widthClass}}" type="password" placeholder="{{placeholder}}" formControlName="{{controlName}}"
