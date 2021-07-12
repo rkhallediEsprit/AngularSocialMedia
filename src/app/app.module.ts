@@ -7,13 +7,14 @@ import { SharedModule } from './shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RequestInterceptorService } from './core/services/service-api/request-interceptor.service';
-import { ErrorInterceptor } from './core/services/service-api/error-interceptor.service';
 import { AuthenticationService } from './core/services/service-api/authentication.service';
 import { HeaderComponent } from './header/header.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
+import { CredentialsService } from "./core/services/credential.service";
 
 @NgModule({
   declarations: [
-    AppComponent, HeaderComponent
+    AppComponent, HeaderComponent, ChangePasswordComponent
   ],
   imports: [
     BrowserModule,
@@ -24,12 +25,14 @@ import { HeaderComponent } from './header/header.component';
   ],
   providers: [
     AuthenticationService,
+    CredentialsService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: RequestInterceptorService,
       multi: true,
     },
   ],
+  entryComponents: [ChangePasswordComponent],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
