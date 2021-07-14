@@ -7,6 +7,7 @@ import { PostCardComponent } from './components/post-card/post-card.component';
 import { PostComponent } from './components/post/post.component';
 import { HomeComponent } from './components/home/home.component';
 import { AuthGuard } from '../core/guards/auth.guard';
+import { ProfileComponent } from "./components/profile/profile.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -27,6 +28,10 @@ const routes: Routes = [
   {
     path: 'postCard',
     component: PostCardComponent
+  },
+  {
+    path : 'profile/:id',
+    component : ProfileComponent,
   }
 ];
 

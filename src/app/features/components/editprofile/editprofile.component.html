@@ -1,0 +1,80 @@
+
+<h2 mat-dialog-title>
+    Edit Information
+    <mat-icon mat-dialog-close aria-hidden="false">close</mat-icon>
+</h2>
+<hr>
+<mat-dialog-content>
+    <div class="editForm" [formGroup]="editForm" >
+        <spinner *ngIf="isPutting"></spinner>
+        <mat-tab-group class="tabGroup">
+            
+            <mat-tab label="User Informations" class="tab" *ngIf="data">
+                
+                <div class="row">
+                    <dga-input class="col-md-6" widthClass="col-md-12" type="text" placeholder="First Name"
+                        [form]="editForm" controlName="name" [required]="true">                                             
+                   
+                    </dga-input>
+                    <dga-input class="col-md-6" widthClass="col-md-12" type="text" placeholder="Last Name"
+                        [form]="editForm" controlName="surname" [required]="true"></dga-input>
+                </div>
+                <div class="row">
+                    <dga-input class="col-md-12" widthClass="col-md-12" type="email" placeholder="Email"
+                        [form]="editForm" controlName="emailAddress" [required]="true"></dga-input>
+                </div>
+                <div class="row">
+                    <dga-input class="col-md-6" widthClass="col-md-12" type="date" placeholder="BirthDay"
+                        [form]="editForm" controlName="dateOfBirth" [required]="true"></dga-input>
+                    <dga-input class="col-md-6" widthClass="col-md-12" type="select" placeholder="Category"
+                        [selectOptions]="[{key:'Musician', value:'MUSICIAN'}, {key:'Singer', value:'SINGER'}, {key:'Painter', value:'PAINTER'}]"
+                        [form]="editForm" controlName="category" [required]="true"></dga-input>
+                </div>
+                <div class="row">
+                    <dga-input class="col-md-12" widthClass="col-md-12" type="text" placeholder="Phone Number"
+                        [form]="editForm" controlName="phoneNumber" [required]="true"></dga-input>
+                </div>
+                <div class="row">
+                    <dga-input class="col-md-12" widthClass="col-md-12" type="text" placeholder="Address"
+                        [form]="editForm" controlName="address" [required]="true"></dga-input>
+                </div>
+                <div class="row">
+                    <dga-input class="col-md-12" widthClass="col-md-12" type="radio" placeholder="Gender"
+                        [radioInputs]="[{key: 'Male', value:'MALE'}, {key: 'Female', value:'FEMALE'}, {key: 'Other', value:'OTHER'}]"
+                        [form]="editForm" controlName="gender" [required]="true"></dga-input>
+                </div>
+                <dga-input class="col-md-10" widthClass="col-md-12" type="textarea"
+                placeholder="Description" [form]="editForm" controlName="bio" [required]="false"></dga-input>
+                
+                <hr>
+                <div class="col-md-12" style="display: flex;justify-content: center; font-weight: 800; margin-top: -15px; padding-bottom:20px ;">
+                    Profile Desactivation
+
+                </div>
+                <div class="col-md-12" style="display: flex;
+                justify-content: space-between;">
+                    <span *ngIf="data.isActive" style="font-weight: 500;">
+                        You Profile is Currently Active
+                    </span>
+                    <span *ngIf="!data.isActive" style="font-weight: 500;">
+                        Your Profile is Currently Inactive
+                    </span>
+                    <span>
+                <mat-slide-toggle formControlName="isActive"></mat-slide-toggle>
+            </span>
+                </div>            
+
+                
+            
+                
+            </mat-tab>
+        </mat-tab-group>
+    </div>
+
+</mat-dialog-content>
+<hr>
+<mat-dialog-actions align="center">
+    <button mat-button cdkFocusInitial class="col-md-12" [ngClass]="{disabled: editForm.invalid}"
+        [disabled]="editForm.invalid"
+      (click)="check()">Save</button>
+</mat-dialog-actions>

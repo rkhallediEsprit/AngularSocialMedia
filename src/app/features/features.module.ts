@@ -18,6 +18,9 @@ import { HomeComponent } from './components/home/home.component';
 import { ProfileCardComponent } from './components/profile-card/profile-card.component';
 import { HttpResponseDialogComponent } from "../shared/components/http-response-dialog/http-response-dialog.component";
 import { RequestInterceptorService } from "../core/services/service-api/request-interceptor.service";
+import { ProfileComponent } from './components/profile/profile.component';
+import { EditprofileComponent } from './components/editprofile/editprofile.component';
+
 
 @NgModule({
   declarations: [
@@ -31,6 +34,9 @@ import { RequestInterceptorService } from "../core/services/service-api/request-
     HomeComponent,
     EventComponent,
     EventDashboardComponent,
+    ProfileComponent,
+    EditprofileComponent,
+
   ],
   imports: [
     CommonModule,
@@ -46,6 +52,6 @@ import { RequestInterceptorService } from "../core/services/service-api/request-
       multi: true,
     },
   ],
-  entryComponents: [RegisterComponent, CreateEditEventComponent, ShowEventComponent, HttpResponseDialogComponent],
+  entryComponents: [RegisterComponent, CreateEditEventComponent, ShowEventComponent, HttpResponseDialogComponent,EditprofileComponent],
 })
 export class FeaturesModule { }
