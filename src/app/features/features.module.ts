@@ -18,6 +18,8 @@ import { HomeComponent } from './components/home/home.component';
 import { ProfileCardComponent } from './components/profile-card/profile-card.component';
 import { HttpResponseDialogComponent } from "../shared/components/http-response-dialog/http-response-dialog.component";
 import { RequestInterceptorService } from "../core/services/service-api/request-interceptor.service";
+import { PostDashboardComponent } from './components/post-dashboard/post-dashboard.component';
+import { PostUpdateComponent } from './components/post-update/post-update.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { EditprofileComponent } from './components/editprofile/editprofile.component';
 
@@ -34,6 +36,8 @@ import { EditprofileComponent } from './components/editprofile/editprofile.compo
     HomeComponent,
     EventComponent,
     EventDashboardComponent,
+    PostDashboardComponent,
+    PostUpdateComponent,
     ProfileComponent,
     EditprofileComponent,
 

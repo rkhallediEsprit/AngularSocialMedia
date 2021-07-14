@@ -55,6 +55,7 @@ import { MatSlideToggleModule } from "@angular/material/slide-toggle";
     MatTabsModule,
     MatSlideToggleModule,
 
+
     SpinnerComponent,
   ],
   entryComponents: [HttpResponseDialogComponent],
