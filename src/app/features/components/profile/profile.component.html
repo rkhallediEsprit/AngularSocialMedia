@@ -1,0 +1,14 @@
+<spinner *ngIf="loading"></spinner>
+<div class="grid-container">
+  <div class="grid-item" *ngIf="userProfile">
+    <profile-card class="profileFeatures" style="height: 20000px;" [userdata]="userProfile" [ismainUser]="ismainUser"></profile-card>
+  </div>
+  <div *ngIf="!userProfile">
+  </div>
+  <div class="grid-item">
+    <app-post></app-post>
+</div>
+  <div class="grid-item">
+    <app-event-dashboard></app-event-dashboard>
+</div>
+</div>
