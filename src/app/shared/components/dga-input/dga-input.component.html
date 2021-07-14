@@ -8,7 +8,7 @@
 
     <div *ngSwitchCase="'textarea'">
         <textarea class="{{widthClass}}" placeholder="{{placeholder}}" formControlName="{{controlName}}"
-        [required]="required"></textarea>
+            [required]="required"></textarea>
     </div>
 
     <div *ngSwitchCase="'file'">
@@ -84,8 +84,9 @@
         <input type="text" placeholder="{{placeholder}}" matInput formControlName="{{controlName}}"
             [matAutocomplete]="auto" class="{{widthClass}}">
         <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" [displayWith]="displayWith">
-            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-                {{option["name"]+" "+option["surname"]}}
+            <mat-option *ngFor="let option of filteredOptions | async" [value]="option" class="profileSearch">
+                <img [src]="option.profilePicture" />
+                <span>{{option["name"]+" "+option["surname"]}}</span>
             </mat-option>
         </mat-autocomplete>
 

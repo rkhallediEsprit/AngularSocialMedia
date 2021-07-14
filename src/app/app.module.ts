@@ -11,6 +11,7 @@ import { AuthenticationService } from './core/services/service-api/authenticatio
 import { HeaderComponent } from './header/header.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { CredentialsService } from "./core/services/credential.service";
+import { ErrorInterceptor } from "./core/services/service-api/error-interceptor.service";
 
 @NgModule({
   declarations: [
@@ -29,6 +30,11 @@ import { CredentialsService } from "./core/services/credential.service";
     {
       provide: HTTP_INTERCEPTORS,
       useClass: RequestInterceptorService,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptor,
       multi: true,
     },
   ],

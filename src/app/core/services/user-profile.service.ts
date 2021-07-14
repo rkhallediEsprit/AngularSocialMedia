@@ -38,9 +38,13 @@ export class UserProfileService {
     return this.http.put<UserProfile>(`${BASE_PATH}/user_profiles/${id}`, user);
   }
 
-  
+
   deleteUsers(id: number): Observable<any> {
     return this.http.delete(`${BASE_PATH}/user_profiles/${id}`);
+  }
+
+  filterUsersByNameOrSurname(nameOrSurname: string): Observable<UserProfile[]> {
+    return this.http.get<UserProfile[]>(`${BASE_PATH}/filterByNameOrUsername/${nameOrSurname}`);
   }
 
 }

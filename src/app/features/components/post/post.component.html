@@ -13,7 +13,7 @@
                 <span>Delete</span>
             </button>
         </mat-menu> -->
-        <img mat-card-avatar class="post-user" [src]="userProfile?.profilePicture">
+        <img mat-card-avatar class="post-user" [src]="'http://localhost:8000'+userProfile?.profilePicture">
         <mat-card-title>{{userProfile?.name+" "+userProfile?.surname | titlecase}}</mat-card-title>
         <mat-card-subtitle>{{username | titlecase}}</mat-card-subtitle>
 
@@ -22,13 +22,16 @@
     <mat-card-content class="post-content">
         <div class="formContainer" [formGroup]="postForm">
             <div class="form">
-                <dga-input class="col-md-10" widthClass="col-md-12" type="textarea"
-                    placeholder="Description" [form]="postForm" controlName="description"></dga-input>
-                <label for="file">
+                <dga-input class="col-md-10" widthClass="col-md-12" type="textarea" placeholder="Description"
+                    [form]="postForm" controlName="description"></dga-input>
+                <label for="file" *ngIf="!imagePath">
                     <mat-icon>file_upload</mat-icon>
                     <span>Upload File</span>
                 </label>
-                <input class="col-md-10" type="file" id="file">
+                <mat-progress-bar mode="determinate" value="{{progress}}" *ngIf="!imagePath && progress>0">
+                </mat-progress-bar>
+                <input class="col-md-10" type="file" id="file" (change)="handleFile($event.target.files[0])">
+                <img *ngIf="imagePath" [src]="'http://localhost:8000'+imagePath">
             </div>
 
         </div>
@@ -36,7 +39,9 @@
     <mat-card-actions>
         <div class='post-action'>
             <div class="submitForm">
-                <button class="col-md-10" [ngClass]="{disabled:postForm.invalid}" [disabled]="postForm.invalid"
+                <button class="col-md-10"
+                    [ngClass]="{disabled:(!postForm.value.attachment && !postForm.value.description)}"
+                    [disabled]="(!postForm.value.attachment && !postForm.value.description)"
                     (click)="postSubmit()">Post</button>
             </div>
         </div>

@@ -32,10 +32,7 @@ export class LoginComponent implements OnInit {
   async login() {
     this.loading = true;
     let response = await this.authService.login(this.loginForm.value);
-    if (response.error) {
-      this.loading = false;
-      this.openLoginFailedDialog(response.error.message);
-    } else {
+    if (response) {
       this.loading = false;
       this.route.navigateByUrl('home');
     }
@@ -43,14 +40,5 @@ export class LoginComponent implements OnInit {
 
   openRegisterDialog() {
     this.dialog.open(RegisterComponent);
-  }
-
-  openLoginFailedDialog(message: string) {
-    this.dialog.open(HttpResponseDialogComponent, {
-      data: message,
-    })
-    setTimeout(() => {
-      this.dialog.closeAll();
-    }, 3000)
   }
 }

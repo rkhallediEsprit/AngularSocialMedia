@@ -8,8 +8,8 @@
         </div>
         <div class="search">
             <div>
-                <dga-input widthClass="col-md-10" type="autoComplete" [form]="searchForm" controlName="search" (value)="goToProfile($event)"
-                    placeholder="Search" [options]="[{name:'waaaaaaa', surname:'aezrazr', username:'bababaab'},{name:'hello', surname:'hahahaha'}]"></dga-input>
+                <dga-input #search widthClass="col-md-10" type="autoComplete" [form]="searchForm" controlName="search" (value)="goToProfile($event)"
+                    placeholder="Search" [options]="options"></dga-input>
             </div>
             <div class="searchIcon">
                 <mat-icon>search</mat-icon>

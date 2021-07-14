@@ -12,6 +12,7 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatCardModule} from '@angular/material/card';
 import {MatListModule} from '@angular/material';
 import {MatTabsModule} from '@angular/material/tabs';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import {MatTabsModule} from '@angular/material/tabs';
     MatAutocompleteModule,
     MatCardModule,
     MatListModule,
-    MatTabsModule
+    MatTabsModule,
+    MatProgressBarModule,
 
   ],
   exports: [
@@ -49,6 +51,7 @@ import {MatTabsModule} from '@angular/material/tabs';
     MatListModule,
     HttpResponseDialogComponent,
     MatTabsModule,
+    MatProgressBarModule,
 
 
     SpinnerComponent

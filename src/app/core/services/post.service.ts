@@ -33,8 +33,15 @@ export class PostService {
     return this.http.put<Post>(`${BASE_PATH}/posts/${id}`, post);
   }
 
-  
+
   deletePosts(id: number): Observable<any> {
     return this.http.delete(`${BASE_PATH}/posts/${id}`);
+  }
+
+
+  fileUpload(file: File): Observable<any> {
+    const fd = new FormData();
+    fd.append('attachment', file, file.name);
+    return this.http.post<any>(`${BASE_PATH}/uploadFile`, fd, { reportProgress: true, observe: 'events' });
   }
 }
