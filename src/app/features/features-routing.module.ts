@@ -7,6 +7,8 @@ import { PostCardComponent } from './components/post-card/post-card.component';
 import { PostComponent } from './components/post/post.component';
 import { HomeComponent } from './components/home/home.component';
 import { AuthGuard } from '../core/guards/auth.guard';
+import { PostDashboardComponent } from "./components/post-dashboard/post-dashboard.component";
+import { PostUpdateComponent } from "./components/post-update/post-update.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -27,6 +29,14 @@ const routes: Routes = [
   {
     path: 'postCard',
     component: PostCardComponent
+  },
+  {
+    path: 'postDashboard',
+    component: PostDashboardComponent
+  },
+  {
+    path: 'postUpdate',
+    component: PostUpdateComponent
   }
 ];
 

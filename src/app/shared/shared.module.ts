@@ -48,7 +48,7 @@ import {MatListModule} from '@angular/material';
     HttpResponseDialogComponent,
 
 
-    SpinnerComponent
+    SpinnerComponent,
   ],
   entryComponents: [
     HttpResponseDialogComponent

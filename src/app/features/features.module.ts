@@ -16,6 +16,8 @@ import { PostCardComponent } from './components/post-card/post-card.component';
 import { PostService } from '../core/services/post.service';
 import { HomeComponent } from './components/home/home.component';
 import { ProfileCardComponent } from './components/profile-card/profile-card.component';
+import { PostDashboardComponent } from './components/post-dashboard/post-dashboard.component';
+import { PostUpdateComponent } from './components/post-update/post-update.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,8 @@ import { ProfileCardComponent } from './components/profile-card/profile-card.com
     HomeComponent,
     EventComponent,
     EventDashboardComponent,
+    PostDashboardComponent,
+    PostUpdateComponent,
   ],
   imports: [
     CommonModule,
