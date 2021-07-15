@@ -5,7 +5,7 @@ import { FeaturesRountingModule } from "./features-routing.module";
 import { LoginComponent } from "./components/login/login.component";
 import { RegisterComponent } from "./components/register/register.component";
 import { UserProfileService } from "../core/services/user-profile.service";
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { CredentialsService } from "../core/services/credential.service";
 import { EventComponent } from "./components/event/event.component";
 import { EventDashboardComponent } from "./components/event-dashboard/event-dashboard.component";
@@ -17,7 +17,14 @@ import { PostCardComponent } from './components/post-card/post-card.component';
 import { PostService } from '../core/services/post.service';
 import { HomeComponent } from './components/home/home.component';
 import { ProfileCardComponent } from './components/profile-card/profile-card.component';
-import { MatButtonModule, MatPaginatorModule } from "@angular/material";
+import { MatButtonModule, MatPaginatorModule, MatProgressBar, MatProgressBarModule, MatTab, MatTabsModule } from "@angular/material";
+import { HttpResponseDialogComponent } from "../shared/components/http-response-dialog/http-response-dialog.component";
+import { RequestInterceptorService } from "../core/services/service-api/request-interceptor.service";
+import { PostDashboardComponent } from './components/post-dashboard/post-dashboard.component';
+import { PostUpdateComponent } from './components/post-update/post-update.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { EditprofileComponent } from './components/editprofile/editprofile.component';
+
 
 @NgModule({
   declarations: [
@@ -31,16 +38,30 @@ import { MatButtonModule, MatPaginatorModule } from "@angular/material";
     HomeComponent,
     EventComponent,
     EventDashboardComponent,
-    ShowConfirmationComponent
+    ShowConfirmationComponent,
+    PostDashboardComponent,
+    PostUpdateComponent,
+    ProfileComponent,
+    EditprofileComponent,
+
   ],
   imports: [
     CommonModule,
     FeaturesRountingModule,
     SharedModule,
     HttpClientModule,
-    MatButtonModule
+    MatButtonModule,
+    MatTabsModule,
+    MatProgressBarModule
   ],
-  providers: [UserProfileService, CredentialsService, PostService],
-  entryComponents: [RegisterComponent, CreateEditEventComponent, ShowEventComponent,ShowConfirmationComponent],
+  providers: [
+    UserProfileService, CredentialsService, PostService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: RequestInterceptorService,
+      multi: true,
+    },
+  ],
+  entryComponents: [RegisterComponent, CreateEditEventComponent, ShowEventComponent, HttpResponseDialogComponent,EditprofileComponent,ShowConfirmationComponent],
 })
 export class FeaturesModule { }

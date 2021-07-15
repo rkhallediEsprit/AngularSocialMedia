@@ -1,4 +1,67 @@
-<mat-card class="example-card">
+
+
+<mat-card class="example-cardProfile" *ngIf="userdata">
+  <mat-card-content>
+    <div class="profile-header">
+      <div class="example-header-image"></div>
+    </div>
+    <mat-card-title *ngIf="!userdata">{{
+      currentUser?.name + " " + currentUser?.surname | titlecase
+    }}</mat-card-title>
+    <mat-card-title *ngIf="userdata">{{
+      userdata?.name + " " + userdata?.surname | titlecase
+    }}</mat-card-title>
+    <mat-card-subtitle *ngIf="!userdata">{{ userUsername | titlecase }}</mat-card-subtitle>
+    <mat-card-subtitle *ngIf="userdata">{{ userdata.name | titlecase }}</mat-card-subtitle>
+    <hr />
+    <p *ngIf="!userdata"> 
+      {{ currentUser?.bio }}
+    </p>
+    <div class="row">
+      <span class="description-title"
+        ><mat-icon>work</mat-icon> Profession:
+      </span>
+      <span class="description-data"> {{userdata.category}} </span>
+    </div>
+    <div class="row">
+      <span class="description-title"><mat-icon>email</mat-icon> Email: </span>
+      <span class="description-data"> {{userdata.emailAddress}} </span>
+    </div>
+    <div class="row">
+      <span class="description-title"> <mat-icon>home</mat-icon>Address: </span>
+      <span class="description-data"> {{userdata.address}}</span>
+    </div>
+    <div class="row">
+      <span class="description-title">
+        <mat-icon>calendar_today</mat-icon> Date de naissance:
+      </span>
+      <span class="description-data"> {{userdata.dateOfBirth}} </span>
+    </div>
+    <div class="row">
+      <span class="description-title">
+        <mat-icon>call</mat-icon> Phone Number:
+      </span>
+      <span class="description-data"> {{userdata.phoneNumber}} </span>
+    </div>
+    <div class="row">
+      <span class="description-title"> <mat-icon>female</mat-icon> Gender </span
+      ><span class="description-data"> {{userdata.gender}} </span>
+    </div>
+    <hr />
+    <mat-card-subtitle> My Bio </mat-card-subtitle>
+    <span> {{userdata.bio}} </span>
+  </mat-card-content>
+  
+  <div class="row justify-content-center">
+      <div class="col-lg-12" *ngIf="ismainUser">
+          <input type="button" class="btn btn-danger" value="Edit" (click)="openEditInformationDialog()">        
+      </div>
+      <div *ngIf="!ismainUser">
+
+      </div>
+  </div>
+</mat-card>
+<mat-card class="example-card" *ngIf="!userdata">
     <mat-card-content>
         <div class="profile-header">
             <div class="example-header-image"></div>

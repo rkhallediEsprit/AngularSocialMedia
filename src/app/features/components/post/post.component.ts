@@ -1,5 +1,7 @@
+import { HttpEventType } from '@angular/common/http';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Attachment } from 'src/app/core/models/attachment.model';
 import { Post } from 'src/app/core/models/post.model';
 import { PostService } from 'src/app/core/services/post.service';
 
@@ -19,10 +21,15 @@ export class PostComponent implements OnInit {
 
   userProfile = JSON.parse(localStorage.getItem('currentUser'));
   username = JSON.parse(localStorage.getItem('loggedInUser'));
-
+  imagePath = null;
+  progress = 0;
   constructor(private postService: PostService) { }
 
   ngOnInit() {
+    this.postService.getPosts().subscribe(res => {
+      console.log(res);
+
+    })
   }
 
   postSubmit() {
@@ -34,8 +41,24 @@ export class PostComponent implements OnInit {
     });
     post.dateOfPublishing = new Date();
     post.userProfile = `/api/user_profiles/${this.userProfile.id}`;
+    if (this.imagePath) {
+      let attachment = new Attachment();
+      attachment.userProfile = post.userProfile;
+      attachment.urlAttachment = this.imagePath;
+    }
     this.postService.createPosts(post).subscribe(res => {
       this.postForm.reset();
     });
+  }
+
+  handleFile(file: File) {
+    this.postService.fileUpload(file).subscribe(event => {
+      if (event.type === HttpEventType.UploadProgress) {
+        this.progress = Math.round(100 * event.loaded / event.total);
+      }
+      if (event.type === HttpEventType.Response) {
+        this.imagePath = event['body']['filePath'];
+      }
+    })
   }
 }

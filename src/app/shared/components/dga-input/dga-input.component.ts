@@ -21,7 +21,7 @@ export class DgaInputComponent implements OnInit {
   @Input() form: FormGroup;
   @Input() controlName: string;
   @Input() styles :object;
-  @Input() options: any[];
+  @Input() options: any[] = [];
   @Output() value = new EventEmitter();
   filteredOptions: Observable<any[]>;
   dateType: string = "text";
@@ -42,10 +42,10 @@ export class DgaInputComponent implements OnInit {
   private _filter(value: string): string[] {
     if (!value['surname'] && !value['name']) {
       const filterValue = value.toLowerCase();
-      return this.options.filter(option => option.name ? option.name.toLowerCase().includes(filterValue) : option.surname.toLowerCase().includes(filterValue));
+      return this.options.filter(option => option.name.toLowerCase().includes(filterValue.toLowerCase()) || option.surname.toLowerCase().includes(filterValue.toLowerCase()));
     } else {
       const filterValue = value;
-      return this.options.filter(option => option.name.toLowerCase().includes(filterValue) || option.surname.toLowerCase().includes(filterValue));
+      return this.options.filter(option => option.name.includes(filterValue) || option.surname.includes(filterValue));
     }
   }
 
@@ -55,6 +55,12 @@ export class DgaInputComponent implements OnInit {
 
   log(value) {
     console.log(value);
+  }
+
+  getSize(){
+    if(this.placeholder === 'Comment'){
+      return '16px';
+    }
   }
 
 }

@@ -27,19 +27,22 @@ export class CredentialsService {
   }
 
   createCredential(credential: Credentials): Observable<Credentials> {
-    credential.password =  bcrypt.hashSync(credential.password, 12);
+    credential.password = bcrypt.hashSync(credential.password, 12);
     return this.http.post<Credentials>(`${BASE_PATH}/credentials`, credential);
   }
 
 
   updateCredential(id: number, credential: Credentials): Observable<Credentials> {
-    credential.password =  bcrypt.hashSync(credential.password, 12);
+    credential.password = bcrypt.hashSync(credential.password, 12);
     return this.http.put<Credentials>(`${BASE_PATH}/credentials/${id}`, credential);
   }
 
-  
+
   deleteCredential(id: number): Observable<any> {
     return this.http.delete(`${BASE_PATH}/credentials/${id}`);
   }
 
+  checkUsername(username: string): Observable<boolean> {
+    return this.http.get<boolean>(`${BASE_PATH}/checkUsername/${username}`);
+  }
 }

@@ -1,12 +1,17 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { MatDialog, MatMenuTrigger, PageEvent } from '@angular/material';
-import { Event, Router } from '@angular/router';
+import { MatDialog, MatMenuTrigger, PageEvent} from '@angular/material';
+import { Router } from '@angular/router';
+import { ChangePasswordComponent } from '../change-password/change-password.component';
 import { UserProfile } from '../core/models/user-profile.model';
-import { EVENT } from '../core/services/mock-event';
+import { UserProfileService } from '../core/services/user-profile.service';
+import { CreateEditEventComponent } from '../features/components/create-edit-event/create-edit-event.component';
+import { DgaInputComponent } from '../shared/components/dga-input/dga-input.component';
 import { NotificationService } from '../core/services/notification.service';
 import { ShowConfirmationComponent } from '../features/components/show-confirmation/show-confirmation.component';
 import { ShowEventComponent } from '../features/components/show-event/show-event.component';
+
+
 
 @Component({
   selector: 'dga-header',
@@ -20,23 +25,26 @@ export class HeaderComponent implements OnInit {
   })
   username: string;
   @Output() signout = new EventEmitter();
+  options = [];
+  @ViewChild('search', { static: false }) search: DgaInputComponent;
   displayedNotif: any[];
- 
-  index: number;
-  pageSizeOptions: number[] = [5];
-  pageEvent: PageEvent;
   notif: any[];
   clickHoverMenuTrigger: MatMenuTrigger;
 
 
-
-  constructor(
-    private router: Router,
-    public dialog: MatDialog,
-    private notificationService: NotificationService) { }
+    constructor(private router: Router, public dialog: MatDialog, private userProfileService: UserProfileService,private notificationService: NotificationService) { }
 
   ngOnInit() {
     this.username = JSON.parse(localStorage.getItem('loggedInUser'));
+    this.searchForm.controls.search.valueChanges.subscribe(value => {
+      if (value && !value.name && value.trim() !== "") {
+        this.userProfileService.filterUsersByNameOrSurname(value).subscribe(res => {
+          this.options = [] = res;
+        })
+      } else if (!value || value === "") {
+        this.search.options = [];
+      }
+    });
     this.getNotification();
   }
 
@@ -45,7 +53,29 @@ export class HeaderComponent implements OnInit {
   }
 
   goToProfile(userProfile: UserProfile) {
-    //this.router.navigateByUrl(`profile/${userProfile.id}`);
+    if(userProfile && userProfile.id)
+    this.router.navigateByUrl(`profile/${userProfile.id}`);
+  }
+
+  openEventDialog() {
+    this.dialog.open(CreateEditEventComponent, {
+      data: {
+        mode: "create"
+      },
+      width: "400px",
+    });
+  }
+
+  openCredentialsDialog() {
+    const dialog = this.dialog.open(ChangePasswordComponent);
+    const sub = dialog.componentInstance.changeCredential.subscribe((data) => {
+      if (data) {
+        this.logout();
+      }
+    });
+    dialog.afterClosed().subscribe(() => {
+      sub.unsubscribe();
+    })
   }
   showConfirmation(notification) {
     this.dialog.open(ShowConfirmationComponent, {
