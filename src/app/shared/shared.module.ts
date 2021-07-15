@@ -11,9 +11,8 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatAutocompleteModule } from "@angular/material/autocomplete";
 import { MatCardModule } from "@angular/material/card";
 import { MatListModule } from "@angular/material";
-import { MatTabsModule } from "@angular/material/tabs";
 import { MatSlideToggleModule } from "@angular/material/slide-toggle";
-import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { MatButtonModule, MatProgressBarModule, MatTabsModule } from "@angular/material";
 
 @NgModule({
   declarations: [
@@ -37,8 +36,8 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     MatListModule,
     MatTabsModule,
     MatSlideToggleModule,
-    MatTabsModule,
     MatProgressBarModule,
+    MatButtonModule,
   ],
   exports: [
     DgaInputComponent,
@@ -58,6 +57,7 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     MatTabsModule,
     MatSlideToggleModule,
     MatProgressBarModule,
+    MatButtonModule,
 
 
     SpinnerComponent,

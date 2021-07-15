@@ -8,18 +8,8 @@
     </div>
     <div class="search">
       <div>
-        <dga-input
-          widthClass="col-md-10"
-          type="autoComplete"
-          [form]="searchForm"
-          controlName="search"
-          (value)="goToProfile($event)"
-          placeholder="Search"
-          [options]="[
-            { name: 'waaaaaaa', surname: 'aezrazr', username: 'bababaab' },
-            { name: 'hello', surname: 'hahahaha' }
-          ]"
-        ></dga-input>
+        <dga-input #search widthClass="col-md-10" type="autoComplete" [form]="searchForm" controlName="search"
+          (value)="goToProfile($event)" placeholder="Search" [options]="options"></dga-input>
       </div>
       <div class="searchIcon">
         <mat-icon>search</mat-icon>
@@ -30,133 +20,81 @@
         <div class="profile">
           <button>
             <img src="../../assets/icons/avatar.jpg" />
-            <span>{{ username | titlecase }}</span>
+            <span>{{username | titlecase}}</span>
           </button>
         </div>
-        <div class="search">
-            <div>
-                <dga-input #search widthClass="col-md-10" type="autoComplete" [form]="searchForm" controlName="search" (value)="goToProfile($event)"
-                    placeholder="Search" [options]="options"></dga-input>
-            </div>
-            <div class="searchIcon">
-                <mat-icon>search</mat-icon>
-            </div>
+        <div class="event">
+          <button (click)="openEventDialog()">
+            <mat-icon>add</mat-icon>
+            <span>Create Event</span>
+          </button>
         </div>
-        <div class="right-side">
-            <div class="actions">
-                <div class="profile">
-                    <button>
-                        <img src="../../assets/icons/avatar.jpg" />
-                        <span>{{username | titlecase}}</span>
-                    </button>
-                </div>
-                <div class="event">
-                    <button (click)="openEventDialog()">
-                        <mat-icon>add</mat-icon>
-                        <span>Create Event</span>
-                    </button>
-                </div>
-                <div class="notifications">
-                  <button class="icon" mat-icon-button [matMenuTriggerFor]="menu1">
-                    <mat-icon matBadge="{{notif?.length}}" matBadgePosition="before" matBadgeColor="warn">notifications</mat-icon>
-                  </button>
-        
-                  <mat-menu #menu1="matMenu">
-                     <div class="row" *ngFor="let notification of notif" (click)="showDetails(notification.event)">
-                      <div>
-                        <mat-icon
-                          style="
-                            color: #999999;
-                            z-index: 100;
-                            right: 15px;
-                            cursor: pointer;
-                            position: absolute;
-                          "
-                          (click)="showConfirmation(notification)"
-                          >clear</mat-icon
-                        >
-                      </div>
-                      <div 
-                        class="col-md-5"
-                        style="
-                          width: 91px;
-                          height: 24px;
-                          margin: 11px 0px 0px 6px;
-                          padding: 2px 8px;
-                          border-radius: 14px;
-                          background-color: #dce0e36b;
-                          display: flex;
-                          align-items: center;
-                          justify-content: space-evenly;
-                          margin-left: 20px;
-                        "
-                      >
-                        <mat-icon>event</mat-icon>
-                        <i class="far fa-bell" style="color: #999999"></i> Event
-                      </div>
-        
-                      <div
-                        [ngClass]="{readed: notification.processed}"
-                        style="
-                          width: 84px;
-                          height: 20px;
-                          margin: 14px 0px 0px 20px;
-                          font-family: Lato;
-                          font-size: 14px;
-                          font-weight: 600;
-                          font-stretch: normal;
-                          font-style: normal;
-                          line-height: 1.43;
-                          letter-spacing: normal;
-                          text-align: center;
-                          color: #4c62b2;
-                          margin-left: 68px;
-                        "
-                      >
-                        {{ notification?.creationDate | date: "shortDate" }}
-                      </div>
-                      <span
-                        style="
-                          width: 241px;
-                          height: 22px;
-                          font-family: Lato;
-                          font-size: 14px;
-                          font-weight: normal;
-                          font-stretch: normal;
-                          font-style: normal;
-                          line-height: 1.43;
-                          letter-spacing: normal;
-                          color: #000000;
-                          margin-left: 20px;
-                        "
-                      >
-                       {{ notification?.event?.eventName}}
-                      </span>
-                   
-                      <hr />
-                    
-                </div>
-              
-                <div>
-            </div>
-            <div class="user-menu">
-                <button class="icon" mat-icon-button [matMenuTriggerFor]="menu">
-                    <mat-icon>arrow_drop_down</mat-icon>
-                </button>
-                <mat-menu #menu="matMenu" id="menu">
-                    <button mat-menu-item>
-                        <mat-icon>person</mat-icon>
-                        <span>{{username | titlecase}}</span>
-                    </button>
-                    <button mat-menu-item (click)="openCredentialsDialog()">
-                        <mat-icon>password</mat-icon>
-                        <span>Change Credentials</span>
-                    </button>
-                    <button mat-menu-item (click)="logout()">
-                        <mat-icon>logout</mat-icon>
-                        <span>Log Out</span>
-                    </button>
-                </mat-menu>
+        <div class="notifications">
+          <button class="icon" mat-icon-button [matMenuTriggerFor]="menu1">
+            <mat-icon matBadge="{{notif?.length}}" matBadgePosition="before" matBadgeColor="warn">notifications
+            </mat-icon>
+          </button>
+          <mat-menu #menu1="matMenu">
+            <div class="row" *ngFor="let notification of notif" (click)="showDetails(notification.event)">
+              <div>
+                <mat-icon style="
+                    color: #999999;
+                    z-index: 100;
+                    right: 15px;
+                    cursor: pointer;
+                    position: absolute;
+                  " (click)="showConfirmation(notification)">clear</mat-icon>
+              </div>
+              <div class="col-md-5" style="
+                  width: 91px;
+                  height: 24px;
+                  margin: 11px 0px 0px 6px;
+                  padding: 2px 8px;
+                  border-radius: 14px;
+                  background-color: #dce0e36b;
+                  display: flex;
+                  align-items: center;
+                  justify-content: space-evenly;
+                  margin-left: 20px;
+                ">
+                <mat-icon>event</mat-icon>
+                <i class="far fa-bell" style="color: #999999"></i> Event
+              </div>
+
+              <div [ngClass]="{readed: notification.processed}" style="
+                  width: 84px;
+                  height: 20px;
+                  margin: 14px 0px 0px 20px;
+                  font-family: Lato;
+                  font-size: 14px;
+                  font-weight: 600;
+                  font-stretch: normal;
+                  font-style: normal;
+                  line-height: 1.43;
+                  letter-spacing: normal;
+                  text-align: center;
+                  color: #4c62b2;
+                  margin-left: 68px;
+                ">
+                {{ notification?.creationDate | date: "shortDate" }}
+              </div>
+              <span style="
+                  width: 241px;
+                  height: 22px;
+                  font-family: Lato;
+                  font-size: 14px;
+                  font-weight: normal;
+                  font-stretch: normal;
+                  font-style: normal;
+                  line-height: 1.43;
+                  letter-spacing: normal;
+                  color: #000000;
+                  margin-left: 20px;
+                ">
+                {{ notification?.event?.eventName}}
+              </span>
+              <hr />
+
             </div>
           </mat-menu>
         </div>
@@ -169,7 +107,11 @@
         <mat-menu #menu="matMenu" id="menu">
           <button mat-menu-item>
             <mat-icon>person</mat-icon>
-            <span>{{ username | titlecase }}</span>
+            <span>{{username | titlecase}}</span>
+          </button>
+          <button mat-menu-item (click)="openCredentialsDialog()">
+            <mat-icon>password</mat-icon>
+            <span>Change Credentials</span>
           </button>
           <button mat-menu-item (click)="logout()">
             <mat-icon>logout</mat-icon>

@@ -3,6 +3,6 @@ import { Event } from "./event.model";
 export class Notification{
     id: number;
     creationDate : Date;
-    event : Event[];
+    event : Event;
     readed?: boolean;
 }

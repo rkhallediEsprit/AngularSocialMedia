@@ -15,7 +15,6 @@ import { PostCardComponent } from './components/post-card/post-card.component';
 import { PostService } from '../core/services/post.service';
 import { HomeComponent } from './components/home/home.component';
 import { ProfileCardComponent } from './components/profile-card/profile-card.component';
-import { MatButtonModule, MatPaginatorModule, MatProgressBar, MatProgressBarModule, MatTab, MatTabsModule } from "@angular/material";
 import { HttpResponseDialogComponent } from "../shared/components/http-response-dialog/http-response-dialog.component";
 import { RequestInterceptorService } from "../core/services/service-api/request-interceptor.service";
 import { PostDashboardComponent } from './components/post-dashboard/post-dashboard.component';
@@ -46,9 +45,6 @@ import { EditprofileComponent } from './components/editprofile/editprofile.compo
     FeaturesRountingModule,
     SharedModule,
     HttpClientModule,
-    MatButtonModule,
-    MatTabsModule,
-    MatProgressBarModule
   ],
   providers: [
     UserProfileService, CredentialsService, PostService,
