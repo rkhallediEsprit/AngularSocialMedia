@@ -9,14 +9,17 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RequestInterceptorService } from './core/services/service-api/request-interceptor.service';
 import { AuthenticationService } from './core/services/service-api/authentication.service';
 import { HeaderComponent } from './header/header.component';
+import { FeaturesModule } from "./features/features.module";
+import { MatBadgeModule, MatPaginatorModule } from "@angular/material";
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { CredentialsService } from "./core/services/credential.service";
 import { ErrorInterceptor } from "./core/services/service-api/error-interceptor.service";
 import { CreateEditEventComponent } from "./features/components/create-edit-event/create-edit-event.component";
+import { ShowConfirmationComponent } from "./features/components/show-confirmation/show-confirmation.component";
 
 @NgModule({
   declarations: [
-    AppComponent, HeaderComponent, ChangePasswordComponent, CreateEditEventComponent
+    AppComponent, HeaderComponent, ChangePasswordComponent, CreateEditEventComponent, ShowConfirmationComponent
   ],
   imports: [
     BrowserModule,
@@ -24,6 +27,9 @@ import { CreateEditEventComponent } from "./features/components/create-edit-even
     SharedModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    FeaturesModule,
+    MatPaginatorModule,
+    MatBadgeModule
   ],
   providers: [
     AuthenticationService,
@@ -39,7 +45,7 @@ import { CreateEditEventComponent } from "./features/components/create-edit-even
       multi: true,
     },
   ],
-  entryComponents: [ChangePasswordComponent, CreateEditEventComponent],
+  entryComponents: [ChangePasswordComponent, CreateEditEventComponent, ShowConfirmationComponent],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

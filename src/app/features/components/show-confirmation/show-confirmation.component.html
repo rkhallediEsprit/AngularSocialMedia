@@ -1,0 +1,30 @@
+
+<div
+ style="display: flex; flex-direction: column;">
+    <span
+      style="  font-family: Lato-Regular;
+  font-size: 18px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.67;
+  letter-spacing: 0.1px;
+  text-align: center;
+  color: #666666;
+"
+    >
+      Are you sure you want to delete this notification ?
+    </span>
+    <div
+      style="    display: flex;
+            justify-content: space-evenly;
+           padding-top: 20px;"
+    >
+      <button mat-raised-button (click)="closeNotification()">
+        Cancel
+      </button>
+      <button mat-raised-button color="primary" (click)="deleteNotification()">
+        Delete
+      </button>
+    </div> 
+</div>
