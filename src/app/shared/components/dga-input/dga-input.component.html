@@ -7,7 +7,7 @@
     </div>
 
     <div *ngSwitchCase="'textarea'">
-        <textarea class="{{widthClass}}" placeholder="{{placeholder}}" formControlName="{{controlName}}"
+        <textarea [ngStyle] ="{'font-size' : getSize() }" class="{{widthClass}}" placeholder="{{placeholder}}" formControlName="{{controlName}}"
             [required]="required"></textarea>
     </div>
 

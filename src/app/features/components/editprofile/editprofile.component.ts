@@ -1,4 +1,3 @@
-import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Component, EventEmitter, Inject, OnInit, Output } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
@@ -14,7 +13,7 @@ import { RegisterComponent } from "../register/register.component";
   styleUrls: ["./editprofile.component.scss"],
 })
 export class EditprofileComponent implements OnInit {
-  isPutting = false;
+  @Output() isPutting = new EventEmitter();
 
   @Output() onAdd = new EventEmitter<UserProfile>();
 
@@ -35,10 +34,9 @@ export class EditprofileComponent implements OnInit {
     private dialogRef: MatDialogRef<RegisterComponent>,
     @Inject(MAT_DIALOG_DATA) public data: UserProfile,
     private userProfileService: UserProfileService,
-    private http: HttpClient,
     private router: Router,
-    private authService : AuthenticationService,
-  ) {}
+    private authService: AuthenticationService,
+  ) { }
 
   ngOnInit() {
     if (this.data) {
@@ -66,16 +64,16 @@ export class EditprofileComponent implements OnInit {
       if (key !== "credential")
         editeduserProfile[key] = this.editForm.value[key];
     });
-    this.isPutting = true;
-    let user=  await this.userProfileService
+    this.isPutting.emit(true);
+    let user = await this.userProfileService
       .updateUsers(this.data.id, editeduserProfile)
       .toPromise()
-       this.isPutting = false;
-  this.onAdd.emit(user);
+    this.isPutting.emit(false);
+    this.onAdd.emit(user);
   }
-  navigateTo(route : string):void {
+  navigateTo(route: string): void {
     this.router.navigateByUrl(route);
- }
+  }
 }
 // () => {
 //   this.isPutting = false;

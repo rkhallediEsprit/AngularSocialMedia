@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { ChangePasswordComponent } from '../change-password/change-password.component';
 import { UserProfile } from '../core/models/user-profile.model';
 import { UserProfileService } from '../core/services/user-profile.service';
+import { CreateEditEventComponent } from '../features/components/create-edit-event/create-edit-event.component';
 import { DgaInputComponent } from '../shared/components/dga-input/dga-input.component';
 
 @Component({
@@ -42,9 +43,17 @@ export class HeaderComponent implements OnInit {
   }
 
   goToProfile(userProfile: UserProfile) {
-    if(userProfile.name)
-    console.log(userProfile);
-    //this.router.navigateByUrl(`profile/${userProfile.id}`);
+    if(userProfile && userProfile.id)
+    this.router.navigateByUrl(`profile/${userProfile.id}`);
+  }
+
+  openEventDialog() {
+    this.dialog.open(CreateEditEventComponent, {
+      data: {
+        mode: "create"
+      },
+      width: "400px",
+    });
   }
 
   openCredentialsDialog() {

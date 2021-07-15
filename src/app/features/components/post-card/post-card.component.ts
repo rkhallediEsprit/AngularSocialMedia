@@ -1,4 +1,3 @@
-import { ThrowStmt } from '@angular/compiler';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material';
@@ -14,21 +13,23 @@ import { PostUpdateComponent } from '../post-update/post-update.component';
   styleUrls: ['./post-card.component.scss']
 })
 export class PostCardComponent implements OnInit {
-  
+
   commentForm = new FormGroup({
     content: new FormControl(null, Validators.required)
   });
   userProfile = JSON.parse(localStorage.getItem('currentUser'));
   username = JSON.parse(localStorage.getItem('loggedInUser'));
-  statusClass = 'not-active';
-  statusClass_Comments = 'not-active_Comment';
-  @Input() post:Post;
-  constructor(private commentService: CommentService , private postService: PostService ,public dialog: MatDialog) { }
+  showComments = false;
+  @Input() post: Post;
+  constructor(private commentService: CommentService, private postService: PostService, public dialog: MatDialog) { }
 
   ngOnInit() {
-    this.postService.getPosts().subscribe( res => { 
-      this.post = res['hydra:member'][1];})
-      this.statusClass_Comments = 'not-active_Comment';
+  }
+
+  getPost(id: number){
+    this.postService.getPost(id).subscribe(res => {
+      this.post = res;
+    })
   }
 
   commentSubmit() {
@@ -39,24 +40,23 @@ export class PostCardComponent implements OnInit {
     });
     comment.dateOfComment = new Date().toString();
     comment.userProfile = `/api/user_profiles/${this.userProfile.id}`;
-    comment.post =`/api/posts/2`;
+    comment.post = `/api/posts/${this.post.id}`;
     this.commentService.createComments(comment).subscribe(res => {
       this.commentForm.reset();
-      this.postService.getPosts().subscribe( res => { 
-        this.post = res['hydra:member'][1];})
+      this.postService.getPost(this.post.id).subscribe(res => {
+        this.post = res;
+      })
     });
   }
-  comment(){
-  this.statusClass = 'active';
-  this.statusClass_Comments = 'active_Comment';
-  }
-  openPostUpdateDialog(){
-    this.dialog.open(PostUpdateComponent, {
-      data: {
-        mode: "edit",
-        event: this.post,
-      },
-      width: "400px",
+  like() { }
+  openPostUpdateDialog() {
+    const dialog = this.dialog.open(PostUpdateComponent, {
+      data: this.post,
+      width: "600px",
     });
+    dialog.afterClosed().subscribe(res => {
+      this.getPost(res);
+    })
   }
+
 }

@@ -1,7 +1,7 @@
 <spinner *ngIf="loading"></spinner>
 <div class="grid-container">
   <div class="grid-item" *ngIf="userProfile">
-    <profile-card class="profileFeatures" style="height: 20000px;" [userdata]="userProfile" [ismainUser]="ismainUser"></profile-card>
+    <profile-card class="profileFeatures" style="height: 20000px;" [userdata]="userProfile" [ismainUser]="ismainUser" (loading)="loading = $event"></profile-card>
   </div>
   <div *ngIf="!userProfile">
   </div>

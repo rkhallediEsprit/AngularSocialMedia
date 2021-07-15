@@ -20,7 +20,7 @@ export class PostService {
 
 
   getPost(id: number): Observable<Post> {
-    return this.http.get<Post>(`${BASE_PATH}/post/${id}`);
+    return this.http.get<Post>(`${BASE_PATH}/posts/${id}`);
   }
 
 

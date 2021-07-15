@@ -8,13 +8,14 @@ import { PostService } from 'src/app/core/services/post.service';
   styleUrls: ['./post-dashboard.component.scss']
 })
 export class PostDashboardComponent implements OnInit {
-  posts:Post;
+  posts: Post[] = [];
   constructor(private postService: PostService) { }
 
 
   ngOnInit() {
-    this.postService.getPosts().subscribe( res => { 
-      this.posts = res['hydra:member'];})
+    this.postService.getPosts().subscribe(res => {
+      this.posts = res;
+    })
   }
 
 }

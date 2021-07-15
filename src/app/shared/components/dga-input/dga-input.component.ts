@@ -57,6 +57,12 @@ export class DgaInputComponent implements OnInit {
     console.log(value);
   }
 
+  getSize(){
+    if(this.placeholder === 'Comment'){
+      return '16px';
+    }
+  }
+
 }
 
 interface KeyValue {
