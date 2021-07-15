@@ -10,6 +10,8 @@ import { RequestInterceptorService } from './core/services/service-api/request-i
 import { ErrorInterceptor } from './core/services/service-api/error-interceptor.service';
 import { AuthenticationService } from './core/services/service-api/authentication.service';
 import { HeaderComponent } from './header/header.component';
+import { FeaturesModule } from "./features/features.module";
+import { MatBadgeModule, MatPaginatorModule } from "@angular/material";
 
 @NgModule({
   declarations: [
@@ -21,6 +23,9 @@ import { HeaderComponent } from './header/header.component';
     SharedModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    FeaturesModule,
+    MatPaginatorModule,
+    MatBadgeModule
   ],
   providers: [
     AuthenticationService,
