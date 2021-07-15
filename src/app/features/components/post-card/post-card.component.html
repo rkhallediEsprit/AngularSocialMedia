@@ -13,7 +13,7 @@
         <span>Delete</span>
       </button>
     </mat-menu>
-    <div mat-card-avatar class="post-header-image"></div>
+    <img mat-card-avatar class="post-user" [src]="'http://localhost:8000'+post?.userProfile?.profilePicture">
     <mat-card-title>{{post?.userProfile?.name+ " " + post?.userProfile?.surname}}</mat-card-title>
     <mat-card-subtitle>{{post?.dateOfPublishing | date:'fullDate'}}</mat-card-subtitle>
   </mat-card-header>
@@ -32,7 +32,7 @@
       </div>
       <div class="like_comment">
         <mat-icon>chat_bubble</mat-icon>
-        <span (click)="showComments=!showComments">Comment</span>
+        <span (click)="showComments=!showComments">Comment{{post.comments && post.comments.length > 0 ? ' ('+post.comments.length+')':'' }}</span>
       </div>
     </label>
 
@@ -50,9 +50,9 @@
   <div *ngIf="showComments" class="commentsContainer">
   <mat-card class="comment-card" *ngFor='let comment of (post && post.comments) ? post.comments : []' >
     <mat-card-header>
-      <div mat-card-avatar class="post-header-image"></div>
+      <img mat-card-avatar class="post-user" [src]="'http://localhost:8000'+comment?.userProfile?.profilePicture">
       <mat-card-title class="mat-card-title">{{comment?.userProfile?.name + " " + comment?.userProfile?.surname  }}</mat-card-title>
-      <mat-card-subtitle>{{comment?.dateOfComment | date:'fullDate'}}</mat-card-subtitle>
+      <mat-card-subtitle class="mat-card-subtitle">{{comment?.dateOfComment | date:'fullDate'}}</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content >
       <p>

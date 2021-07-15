@@ -12,10 +12,11 @@ import { HeaderComponent } from './header/header.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { CredentialsService } from "./core/services/credential.service";
 import { ErrorInterceptor } from "./core/services/service-api/error-interceptor.service";
+import { CreateEditEventComponent } from "./features/components/create-edit-event/create-edit-event.component";
 
 @NgModule({
   declarations: [
-    AppComponent, HeaderComponent, ChangePasswordComponent
+    AppComponent, HeaderComponent, ChangePasswordComponent, CreateEditEventComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +39,7 @@ import { ErrorInterceptor } from "./core/services/service-api/error-interceptor.
       multi: true,
     },
   ],
-  entryComponents: [ChangePasswordComponent],
+  entryComponents: [ChangePasswordComponent, CreateEditEventComponent],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

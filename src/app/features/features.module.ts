@@ -28,7 +28,6 @@ import { EditprofileComponent } from './components/editprofile/editprofile.compo
   declarations: [
     LoginComponent,
     RegisterComponent,
-    CreateEditEventComponent,
     ShowEventComponent,
     PostComponent,
     PostCardComponent,
@@ -56,6 +55,6 @@ import { EditprofileComponent } from './components/editprofile/editprofile.compo
       multi: true,
     },
   ],
-  entryComponents: [RegisterComponent, CreateEditEventComponent, ShowEventComponent, HttpResponseDialogComponent,EditprofileComponent],
+  entryComponents: [RegisterComponent, ShowEventComponent, HttpResponseDialogComponent,EditprofileComponent],
 })
 export class FeaturesModule { }
