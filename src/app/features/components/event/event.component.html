@@ -22,18 +22,21 @@
   <mat-card-content>
 
     <div class="event-content">
-      <img mat-card-image src="assets/guitare.jpg">
-      <h6>
-        {{data.dateOfEvent|date:'fullDate'}}
-      </h6>
-      <p>
-        {{data.description}}
-      </p>
-      <h5>
-        <mat-icon>groups</mat-icon>
-        <span> {{data?.participants?.length}} Participants </span>
-      </h5>
-    </div>
+  <img mat-card-image src="assets/guitare.jpg" >
+  <h5>
+    {{data.eventName}}
+  </h5>
+    <h6>
+{{data?.dateOfEvent|date:'fullDate'}}
+    </h6>
+  <p> 
+  {{data.description}}
+  </p>
+  <h5>
+    <mat-icon>groups</mat-icon>
+   <span> {{data?.participants?.length}} Participants </span>
+  </h5>
+</div>
   </mat-card-content>
   <mat-card-actions>
     <div class='event-action'>

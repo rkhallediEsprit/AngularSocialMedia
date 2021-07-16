@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { Event } from "src/app/core/models/event.model";
+import { filter } from "rxjs/operators";
 import { EventsService } from "../../../core/services/event.service";
 @Component({
   selector: "app-event-dashboard",
