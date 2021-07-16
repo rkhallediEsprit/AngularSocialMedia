@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -21,8 +21,11 @@ export class UserProfileService {
   }
 
 
-  getUser(id: number): Observable<UserProfile> {
-    return this.http.get<UserProfile>(`${BASE_PATH}/user_profiles/${id}`);
+  getUser(id: number): Observable<UserProfile>  {
+    let header = new HttpHeaders().set('content-type', 'application/json', );
+    return this.http.get<UserProfile>(`${BASE_PATH}/user_profiles/${id}`,{
+      headers: header
+    });
   }
 
   getUserByCredentialUsername(username: string): Observable<UserProfile> {
@@ -35,12 +38,17 @@ export class UserProfileService {
 
 
   updateUsers(id: number, user: UserProfile): Observable<UserProfile> {
-    return this.http.put<UserProfile>(`${BASE_PATH}/user_profiles/${id}`, user);
+    let header = new HttpHeaders().set('content-type', 'application/json', );
+    return this.http.put<UserProfile>(`${BASE_PATH}/user_profiles/${id}`, user,{headers:header});
   }
 
-  
+
   deleteUsers(id: number): Observable<any> {
     return this.http.delete(`${BASE_PATH}/user_profiles/${id}`);
+  }
+
+  filterUsersByNameOrSurname(nameOrSurname: string): Observable<UserProfile[]> {
+    return this.http.get<UserProfile[]>(`${BASE_PATH}/filterByNameOrUsername/${nameOrSurname}`);
   }
 
 }

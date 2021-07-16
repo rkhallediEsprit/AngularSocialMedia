@@ -14,6 +14,8 @@ import { MatListModule } from "@angular/material";
 import { MatTabsModule } from "@angular/material/tabs";
 import { ConfirmDialogComponent } from "./confirm-dialog/confirm-dialog.component";
 import { CreateEditEventComponent } from "../features/components/create-edit-event/create-edit-event.component";
+import { MatSlideToggleModule } from "@angular/material/slide-toggle";
+import { MatButtonModule, MatProgressBarModule } from "@angular/material";
 
 @NgModule({
   declarations: [
@@ -38,6 +40,9 @@ import { CreateEditEventComponent } from "../features/components/create-edit-eve
     MatCardModule,
     MatListModule,
     MatTabsModule,
+    MatSlideToggleModule,
+    MatProgressBarModule,
+    MatButtonModule,
   ],
   exports: [
     DgaInputComponent,
@@ -55,7 +60,11 @@ import { CreateEditEventComponent } from "../features/components/create-edit-eve
     MatListModule,
     HttpResponseDialogComponent,
     MatTabsModule,
+    MatSlideToggleModule,
+    MatProgressBarModule,
+    MatButtonModule,
     CreateEditEventComponent,
+
     SpinnerComponent,
   ],
   entryComponents: [HttpResponseDialogComponent, CreateEditEventComponent],

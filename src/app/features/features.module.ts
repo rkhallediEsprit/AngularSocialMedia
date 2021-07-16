@@ -18,6 +18,10 @@ import { ProfileCardComponent } from "./components/profile-card/profile-card.com
 import { HttpResponseDialogComponent } from "../shared/components/http-response-dialog/http-response-dialog.component";
 import { RequestInterceptorService } from "../core/services/service-api/request-interceptor.service";
 import { ConfirmDialogService } from "../shared/confirm-dialog/confirm-dialog.service";
+import { PostDashboardComponent } from "./components/post-dashboard/post-dashboard.component";
+import { PostUpdateComponent } from "./components/post-update/post-update.component";
+import { ProfileComponent } from "./components/profile/profile.component";
+import { EditprofileComponent } from "./components/editprofile/editprofile.component";
 
 @NgModule({
   declarations: [
@@ -30,6 +34,10 @@ import { ConfirmDialogService } from "../shared/confirm-dialog/confirm-dialog.se
     HomeComponent,
     EventComponent,
     EventDashboardComponent,
+    PostDashboardComponent,
+    PostUpdateComponent,
+    ProfileComponent,
+    EditprofileComponent,
   ],
   imports: [
     CommonModule,
@@ -52,6 +60,7 @@ import { ConfirmDialogService } from "../shared/confirm-dialog/confirm-dialog.se
     RegisterComponent,
     ShowEventComponent,
     HttpResponseDialogComponent,
+    EditprofileComponent,
   ],
 })
 export class FeaturesModule {}

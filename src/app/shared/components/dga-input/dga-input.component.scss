@@ -23,7 +23,7 @@ input[type="textarea"]:focus,
 input[type="number"]:focus,
 input[type="password"]:focus,
 input[type="email"]:focus,
-input[type="date"]:focus, 
+input[type="date"]:focus,
 select:focus,
 textarea:focus {
   border: 1px solid #384949;
@@ -113,8 +113,22 @@ input[type="text"] {
   color: #ffffff;
 }
 
-textarea{
-  height: 80px;
+textarea {
+  min-height: 80px;
   max-height: 80px;
   overflow-x: hidden;
+}
+
+.profileSearch {
+  span {
+    font-size: 14px;
+    font-weight: 500;
+    margin: 0 10px;
+  }
+  img{
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+  }
 }

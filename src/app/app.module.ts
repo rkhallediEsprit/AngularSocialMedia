@@ -9,12 +9,17 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RequestInterceptorService } from './core/services/service-api/request-interceptor.service';
 import { AuthenticationService } from './core/services/service-api/authentication.service';
 import { HeaderComponent } from './header/header.component';
+import { FeaturesModule } from "./features/features.module";
+import { MatBadgeModule, MatPaginatorModule } from "@angular/material";
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { CredentialsService } from "./core/services/credential.service";
+import { ErrorInterceptor } from "./core/services/service-api/error-interceptor.service";
+import { CreateEditEventComponent } from "./features/components/create-edit-event/create-edit-event.component";
+import { ShowConfirmationComponent } from "./features/components/show-confirmation/show-confirmation.component";
 
 @NgModule({
   declarations: [
-    AppComponent, HeaderComponent, ChangePasswordComponent
+    AppComponent, HeaderComponent, ChangePasswordComponent, CreateEditEventComponent, ShowConfirmationComponent
   ],
   imports: [
     BrowserModule,
@@ -22,6 +27,9 @@ import { CredentialsService } from "./core/services/credential.service";
     SharedModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    FeaturesModule,
+    MatPaginatorModule,
+    MatBadgeModule
   ],
   providers: [
     AuthenticationService,
@@ -31,8 +39,13 @@ import { CredentialsService } from "./core/services/credential.service";
       useClass: RequestInterceptorService,
       multi: true,
     },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptor,
+      multi: true,
+    },
   ],
-  entryComponents: [ChangePasswordComponent],
+  entryComponents: [ChangePasswordComponent, CreateEditEventComponent, ShowConfirmationComponent],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

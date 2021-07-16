@@ -17,6 +17,7 @@
         .example-header-image {
             background-image: url("../../../../assets/icons/avatar.jpg");
             background-size: cover;
+            object-fit: cover;
             height: 100px;
             width: 100px;
             border-radius: 50%;
@@ -51,4 +52,100 @@
     mat-card-title {
         color: #384949;
     }
+    .description{
+        text-align: start;
+        color: rgba(0, 0, 0, 0.54);
+        font-size: 14px;
+        padding: 10px 40px;
+
+    }
 }
+.example-cardProfile {
+    /*max-width: 90%;
+    height: 900px;*/
+    width: auto;
+    background-color: #f0f2f5;
+    padding: 0;
+    border-radius: 10px;
+    //margin: 5;
+    //margin-left: 5%;
+    .profile-header {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin: 10px auto 75px auto;
+        position: relative;
+        height: 100px;
+        background-color: #d2c2a5;
+        border-radius: 10px 10px 0 0;
+        .example-header-image {
+            background-image: url("../../../../assets/icons/avatar.jpg");
+            background-size: cover;
+            height: 100px;
+            width: 100px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            object-fit: cover;
+            border: 2px solid #d2c2a5;
+            position: absolute;
+            bottom: -50px;
+            &:hover {
+                border-color: #384949;
+                cursor: pointer;
+            }
+        }
+    }
+    mat-card-title {
+        &:hover {
+            text-decoration: underline;
+            cursor: pointer;
+            font-weight: 600;
+        }
+    }
+    hr {
+        width: 80%;
+        margin: 20px 10%;
+    }
+    p {
+        text-align: justify;
+        color: rgba(0, 0, 0, 0.54);
+        font-size: 14px;
+        padding: 10px 40px;
+    }
+    mat-card-title {
+        color: #384949;
+    }
+    .description-title{
+        text-align: start;
+        color: rgba(0, 0, 0, 0.54);
+        font-size: 14px;
+        padding: 10px;
+        //width: 60%;
+
+    }
+    .description-data{
+        text-align: center;
+        color:black;
+        font-weight: 500;
+        font-size: 20;
+        //padding: 10px 10px;
+        //width: 10%;
+
+    }
+    mat-icon {
+        font-size: 12px;
+        padding: 8px;
+        
+    }
+    .card-button{
+        display: flex;
+        justify-content: flex-end;  
+           
+        padding: 10px 10px;
+    }
+    
+    
+
+}
+
+
