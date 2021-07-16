@@ -1,0 +1,25 @@
+<div class="modal-body-confirm" [class]="[data.type, data.sizeConfirm]">
+    <div class="header-confirm">
+      <i class="icon-confirm" [class]="data.icon"></i>
+      <h1 class="title-confirm">{{ data.title }}</h1>
+  
+      <div class="text-center confirm-message" mat-dialog-content>
+        <p class="dialog-message">{{ data.message }}</p>
+      </div>
+      <div class="buttons">
+        <button class="btn btn-no" style="margin-right: 10px" (click)="cancel()">
+          {{ data.cancelText }}
+          <span [class]="data.iconCancel"></span>
+        </button>
+        <button class="btn btn-yes" (click)="confirm()">
+          {{ data.confirmText }}
+          <span
+            class="iconConfirm"
+            [hidden]="!data.iconConfirm"
+            [class]="data.iconConfirm"
+          ></span>
+        </button>
+      </div>
+    </div>
+  </div>
+  

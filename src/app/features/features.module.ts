@@ -10,18 +10,18 @@ import { CredentialsService } from "../core/services/credential.service";
 import { EventComponent } from "./components/event/event.component";
 import { EventDashboardComponent } from "./components/event-dashboard/event-dashboard.component";
 import { ShowEventComponent } from "./components/show-event/show-event.component";
-import { PostComponent } from './components/post/post.component';
-import { PostCardComponent } from './components/post-card/post-card.component';
-import { PostService } from '../core/services/post.service';
-import { HomeComponent } from './components/home/home.component';
-import { ProfileCardComponent } from './components/profile-card/profile-card.component';
+import { PostComponent } from "./components/post/post.component";
+import { PostCardComponent } from "./components/post-card/post-card.component";
+import { PostService } from "../core/services/post.service";
+import { HomeComponent } from "./components/home/home.component";
+import { ProfileCardComponent } from "./components/profile-card/profile-card.component";
 import { HttpResponseDialogComponent } from "../shared/components/http-response-dialog/http-response-dialog.component";
 import { RequestInterceptorService } from "../core/services/service-api/request-interceptor.service";
-import { PostDashboardComponent } from './components/post-dashboard/post-dashboard.component';
-import { PostUpdateComponent } from './components/post-update/post-update.component';
-import { ProfileComponent } from './components/profile/profile.component';
-import { EditprofileComponent } from './components/editprofile/editprofile.component';
-
+import { ConfirmDialogService } from "../shared/confirm-dialog/confirm-dialog.service";
+import { PostDashboardComponent } from "./components/post-dashboard/post-dashboard.component";
+import { PostUpdateComponent } from "./components/post-update/post-update.component";
+import { ProfileComponent } from "./components/profile/profile.component";
+import { EditprofileComponent } from "./components/editprofile/editprofile.component";
 
 @NgModule({
   declarations: [
@@ -38,7 +38,6 @@ import { EditprofileComponent } from './components/editprofile/editprofile.compo
     PostUpdateComponent,
     ProfileComponent,
     EditprofileComponent,
-
   ],
   imports: [
     CommonModule,
@@ -47,13 +46,21 @@ import { EditprofileComponent } from './components/editprofile/editprofile.compo
     HttpClientModule,
   ],
   providers: [
-    UserProfileService, CredentialsService, PostService,
+    UserProfileService,
+    CredentialsService,
+    PostService,
+    ConfirmDialogService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: RequestInterceptorService,
       multi: true,
     },
   ],
-  entryComponents: [RegisterComponent, ShowEventComponent, HttpResponseDialogComponent,EditprofileComponent],
+  entryComponents: [
+    RegisterComponent,
+    ShowEventComponent,
+    HttpResponseDialogComponent,
+    EditprofileComponent,
+  ],
 })
-export class FeaturesModule { }
+export class FeaturesModule {}

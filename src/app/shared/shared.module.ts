@@ -11,14 +11,19 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatAutocompleteModule } from "@angular/material/autocomplete";
 import { MatCardModule } from "@angular/material/card";
 import { MatListModule } from "@angular/material";
+import { MatTabsModule } from "@angular/material/tabs";
+import { ConfirmDialogComponent } from "./confirm-dialog/confirm-dialog.component";
+import { CreateEditEventComponent } from "../features/components/create-edit-event/create-edit-event.component";
 import { MatSlideToggleModule } from "@angular/material/slide-toggle";
-import { MatButtonModule, MatProgressBarModule, MatTabsModule } from "@angular/material";
+import { MatButtonModule, MatProgressBarModule } from "@angular/material";
 
 @NgModule({
   declarations: [
     DgaInputComponent,
     SpinnerComponent,
     HttpResponseDialogComponent,
+    ConfirmDialogComponent,
+    CreateEditEventComponent,
   ],
   imports: [
     CommonModule,
@@ -58,10 +63,10 @@ import { MatButtonModule, MatProgressBarModule, MatTabsModule } from "@angular/m
     MatSlideToggleModule,
     MatProgressBarModule,
     MatButtonModule,
-
+    CreateEditEventComponent,
 
     SpinnerComponent,
   ],
-  entryComponents: [HttpResponseDialogComponent],
+  entryComponents: [HttpResponseDialogComponent, CreateEditEventComponent],
 })
 export class SharedModule {}
