@@ -1,4 +1,3 @@
-import { Attachment } from "./attachment.model";
 import { Comment } from "./comment.model";
 import { UserProfile } from "./user-profile.model";
 
@@ -8,6 +7,6 @@ export class Post {
     description: string;
     dateOfPublishing: Date;
     userProfile: string | UserProfile;
-    attachment: string | Attachment;
+    filePath: string;
     comments: string[] | Comment[];
 }

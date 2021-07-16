@@ -6,7 +6,7 @@
   <div *ngIf="!userProfile">
   </div>
   <div class="grid-item">
-    <app-post></app-post>
+    <app-post-dashboard [userdata]="userProfile" *ngIf="userProfile"></app-post-dashboard>
 </div>
   <div class="grid-item">
     <app-event-dashboard></app-event-dashboard>

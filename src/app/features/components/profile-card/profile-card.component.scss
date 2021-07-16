@@ -143,9 +143,16 @@
            
         padding: 10px 10px;
     }
-    
-    
+    .btn-danger {
+        color: #fff;
+        background-color: #384949;
+        width: 80%;
+        border-color: #384949;
 
+        &:hover{
+            background-color:#d2c2a5;
+            border-color:#d2c2a5;
+            color: #384949;
+        }
+    }
 }
-
-

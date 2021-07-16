@@ -30,17 +30,23 @@
                 </label>
                 <mat-progress-bar mode="determinate" value="{{progress}}" *ngIf="!imagePath && progress>0">
                 </mat-progress-bar>
-                <input class="col-md-10" type="file" id="file" (change)="handleFile($event.target.files[0])">
-                <img *ngIf="imagePath" [src]="'http://localhost:8000'+imagePath">
+                <input class="col-md-10" type="file" id="file" formControlName="file"
+                    (change)="handleFile($event.target.files[0])">
+                <img *ngIf="imagePath && !imagePath.includes('mp4')" [src]="'http://localhost:8000'+imagePath">
+                <video *ngIf="imagePath && imagePath.includes('mp4')" width="500" height="500" controls>
+                    <source [src]="'http://localhost:8000'+imagePath">
+                </video>
+                <label *ngIf="imagePath" (click)="deleteImage()">
+                    <mat-icon>delete</mat-icon><span>Delete Image</span>
+                </label>
             </div>
         </div>
     </mat-card-content>
     <mat-card-actions>
         <div class='post-action'>
             <div class="submitForm">
-                <button class="col-md-10"
-                    [ngClass]="{disabled:(!postForm.value.attachment && !postForm.value.description)}"
-                    [disabled]="(!postForm.value.attachment && !postForm.value.description)"
+                <button class="col-md-10" [ngClass]="{disabled:(!postForm.value.file && !postForm.value.description)}"
+                    [disabled]="(!postForm.value.file && !postForm.value.description)"
                     (click)="postSubmit()">Post</button>
             </div>
         </div>

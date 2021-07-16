@@ -18,7 +18,7 @@
     <div class="right-side">
       <div class="actions">
         <div class="profile">
-          <button>
+          <button (click)="goToProfile(null, true)">
             <img src="../../assets/icons/avatar.jpg" />
             <span>{{username | titlecase}}</span>
           </button>

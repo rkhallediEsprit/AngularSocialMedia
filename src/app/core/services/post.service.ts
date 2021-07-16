@@ -38,6 +38,9 @@ export class PostService {
     return this.http.delete(`${BASE_PATH}/posts/${id}`);
   }
 
+  getPostByUserId(id: number) {
+    return this.http.get<any>(`${BASE_PATH}/getPostByUserId/${id}`)
+  }
 
   fileUpload(file: File): Observable<any> {
     const fd = new FormData();

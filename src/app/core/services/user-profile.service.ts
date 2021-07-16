@@ -21,9 +21,9 @@ export class UserProfileService {
   }
 
 
-  getUser(id: number): Observable<UserProfile>  {
-    let header = new HttpHeaders().set('content-type', 'application/json', );
-    return this.http.get<UserProfile>(`${BASE_PATH}/user_profiles/${id}`,{
+  getUser(id: number): Observable<UserProfile> {
+    let header = new HttpHeaders().set('content-type', 'application/json',);
+    return this.http.get<UserProfile>(`${BASE_PATH}/user_profiles/${id}`, {
       headers: header
     });
   }
@@ -38,8 +38,8 @@ export class UserProfileService {
 
 
   updateUsers(id: number, user: UserProfile): Observable<UserProfile> {
-    let header = new HttpHeaders().set('content-type', 'application/json', );
-    return this.http.put<UserProfile>(`${BASE_PATH}/user_profiles/${id}`, user,{headers:header});
+    let header = new HttpHeaders().set('content-type', 'application/json',);
+    return this.http.put<UserProfile>(`${BASE_PATH}/user_profiles/${id}`, user, { headers: header });
   }
 
 
@@ -49,6 +49,10 @@ export class UserProfileService {
 
   filterUsersByNameOrSurname(nameOrSurname: string): Observable<UserProfile[]> {
     return this.http.get<UserProfile[]>(`${BASE_PATH}/filterByNameOrUsername/${nameOrSurname}`);
+  }
+
+  sendEmail(email: string, username: string): Observable<any> {
+    return this.http.post<any>(`${BASE_PATH}/sendMail`, { email: email, username: username });
   }
 
 }

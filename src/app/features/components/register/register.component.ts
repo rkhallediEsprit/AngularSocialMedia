@@ -74,7 +74,9 @@ export class RegisterComponent implements OnInit {
     this.credentialsService.createCredential(credential).subscribe(res => {
       userProfile.credential = `/api/credentials/${res.id}`;
       this.userProfileService.createUsers(userProfile).subscribe(response => {
-        this.dialogRef.close();
+        this.userProfileService.sendEmail(userProfile.emailAddress, credential.username).subscribe(res => {
+          this.dialogRef.close();
+        })
       });
     })
   }
