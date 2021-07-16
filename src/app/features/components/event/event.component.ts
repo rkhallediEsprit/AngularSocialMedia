@@ -16,7 +16,6 @@ export class EventComponent implements OnInit {
   @Input() data: any;
   @Output()
   updateEvents = new EventEmitter();
-  event;
   constructor(
     public dialogService: ConfirmDialogService,
     public dialog: MatDialog,

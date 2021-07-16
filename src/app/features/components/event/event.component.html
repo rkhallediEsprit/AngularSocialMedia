@@ -24,8 +24,11 @@
    
     <div class="event-content">
   <img mat-card-image src="assets/guitare.jpg" >
+  <h5>
+    {{data.eventName}}
+  </h5>
     <h6>
-{{data.dateOfEvent|date:'fullDate'}}
+{{data?.dateOfEvent|date:'fullDate'}}
     </h6>
   <p> 
   {{data.description}}

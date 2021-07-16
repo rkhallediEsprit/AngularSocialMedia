@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { filter } from "rxjs/operators";
 import { EventsService } from "../../../core/services/event.service";
 import { EVENT } from "../../../core/services/mock-event";
 @Component({
@@ -16,8 +17,7 @@ export class EventDashboardComponent implements OnInit {
 
   updateEvents() {
     this.eventService.getEvents().subscribe((res) => {
-      this.dashboard = res["hydra:member"];
-      console.log(this.dashboard);
+      this.dashboard = res;
     });
   }
 }
