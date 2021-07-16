@@ -36,7 +36,8 @@ export class PostComponent implements OnInit {
   postSubmit() {
     let post = new Post();
     Object.keys(this.postForm.value).forEach(key => {
-      post[key] = this.postForm.value[key];
+      if (key !== "file")
+        post[key] = this.postForm.value[key];
     });
     post.dateOfPublishing = new Date();
     post.userProfile = `/api/user_profiles/${this.userProfile.id}`;

@@ -29,4 +29,8 @@ export class PostDashboardComponent implements OnInit {
     }
   }
 
+  addPost(post: Post){
+    this.posts.splice(0, 0, post);
+  }
+
 }
