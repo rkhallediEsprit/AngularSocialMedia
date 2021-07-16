@@ -1,14 +1,14 @@
-<mat-card class="post-card" >
+<mat-card *ngIf="showPost" class="post-card" >
   <mat-card-header>
-    <button mat-icon-button [matMenuTriggerFor]="menu" class='post-menu'>
+    <button *ngIf="showMenu" mat-icon-button [matMenuTriggerFor]="menu" class='post-menu'>
       <mat-icon>more_vert</mat-icon>
     </button>
-    <mat-menu #menu="matMenu">
+    <mat-menu #menu="matMenu" >
       <button mat-menu-item (click)="openPostUpdateDialog()">
         <mat-icon>edit</mat-icon>
         <span>Edit</span>
       </button>
-      <button mat-menu-item>
+      <button mat-menu-item (click)="deletePost()">
         <mat-icon>delete</mat-icon>
         <span>Delete</span>
       </button>
@@ -35,7 +35,6 @@
         <span (click)="showComments=!showComments">Comment{{post.comments && post.comments.length > 0 ? ' ('+post.comments.length+')':'' }}</span>
       </div>
     </label>
-
   </mat-card-actions>
   <hr />
   <div class="commentSubmit" [formGroup]="commentForm">
@@ -56,7 +55,7 @@
     </mat-card-header>
     <mat-card-content >
       <p>
-           {{comment?.content}}
+        {{comment?.content}}
       </p>
     </mat-card-content>
   </mat-card>

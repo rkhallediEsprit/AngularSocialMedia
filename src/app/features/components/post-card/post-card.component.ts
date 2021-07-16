@@ -19,11 +19,17 @@ export class PostCardComponent implements OnInit {
   });
   userProfile = JSON.parse(localStorage.getItem('currentUser'));
   username = JSON.parse(localStorage.getItem('loggedInUser'));
+  currentuserid: number = JSON.parse(localStorage.getItem('currentUser'))['id'];
   showComments = false;
+  showPost = true;
+  showMenu;
   @Input() post: Post;
   constructor(private commentService: CommentService, private postService: PostService, public dialog: MatDialog) { }
 
   ngOnInit() {
+    if(this.userProfile['id']==this.post.userProfile['id']){
+      this.showMenu=true;
+    }else(this.showMenu=false);
   }
 
   getPost(id: number){
@@ -56,6 +62,12 @@ export class PostCardComponent implements OnInit {
     });
     dialog.afterClosed().subscribe(res => {
       this.getPost(res);
+    })
+  }
+  deletePost(){
+    this.postService.deletePosts(this.post.id).subscribe(res => {
+      this.post = res;
+      this.showPost = false;
     })
   }
 
