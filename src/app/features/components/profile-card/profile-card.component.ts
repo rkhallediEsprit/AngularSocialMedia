@@ -1,7 +1,11 @@
+import { HttpEventType } from '@angular/common/http';
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { UserProfile } from 'src/app/core/models/user-profile.model';
+import { PostService } from 'src/app/core/services/post.service';
+import { UserProfileService } from 'src/app/core/services/user-profile.service';
 import { EditprofileComponent } from '../editprofile/editprofile.component';
 
 
@@ -15,11 +19,11 @@ export class ProfileCardComponent implements OnInit {
   @Input() userdata: UserProfile;
   @Input() ismainUser: any;
   @Output() loading = new EventEmitter();
-
+  upload = new FormControl();
   currentUser: UserProfile = JSON.parse(localStorage.getItem('currentUser'));
   userUsername: string = JSON.parse(localStorage.getItem('loggedInUser'));
 
-  constructor(private router: Router, public dialog: MatDialog) { }
+  constructor(private router: Router, public dialog: MatDialog, private postService: PostService, private userProfileService: UserProfileService) { }
 
   ngOnInit() {
     console.log(this.ismainUser);
@@ -39,15 +43,24 @@ export class ProfileCardComponent implements OnInit {
     });
 
   }
-  test() {
-    console.log(this.userdata)
-  }
-
   onNotifyClicked(user: UserProfile): void {
     this.userdata = user;
   }
 
   navigateToProfile() {
     this.router.navigate(['profile', this.currentUser['id']]);
+  }
+
+  handleFile(file: File) {
+    this.postService.fileUpload(file).subscribe(event => {
+      if (event.type === HttpEventType.Response) {
+        this.userProfileService.updateUsers(this.currentUser.id, { profilePicture: event['body']['filePath'] } as any).subscribe(res => {
+          Object.keys(res).forEach(key => {
+            this.currentUser[key] = res[key];
+          });
+          localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
+        });
+      }
+    })
   }
 }

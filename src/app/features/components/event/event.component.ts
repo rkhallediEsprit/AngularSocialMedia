@@ -7,31 +7,42 @@ import { ConfirmDialogService } from "../../../shared/confirm-dialog/confirm-dia
 import { EventsService } from "../../../core/services/event.service";
 import { switchMap } from "rxjs/operators";
 import { EMPTY } from "rxjs";
+import { Event } from "src/app/core/models/event.model";
 @Component({
   selector: "app-event",
   templateUrl: "./event.component.html",
   styleUrls: ["./event.component.scss"],
 })
 export class EventComponent implements OnInit {
-  @Input() data: any;
+  @Input() data: Event;
   @Output()
   updateEvents = new EventEmitter();
+  userProfile = JSON.parse(localStorage.getItem('currentUser'));
   event;
+  isParticipant;
   constructor(
     public dialogService: ConfirmDialogService,
     public dialog: MatDialog,
     private eventService: EventsService
-  ) {}
+  ) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.data.participants && (this.data.participants as any).find(participante => participante.id == this.userProfile.id) ? this.isParticipant = true : this.isParticipant = false;
+  }
 
   openEventDialog() {
-    this.dialog.open(CreateEditEventComponent, {
+    const dialog = this.dialog.open(CreateEditEventComponent, {
       data: {
         mode: "edit",
         event: this.data,
       },
       width: "400px",
+    });
+    const sub = dialog.componentInstance.eventAdded.subscribe((data) => {
+      this.eventService.getEvent(this.data.id).subscribe(res => {
+        this.data = res;
+        dialog.close();
+      });
     });
   }
   deleteEvent() {
@@ -60,5 +71,26 @@ export class EventComponent implements OnInit {
       data: this.data,
       width: "600px",
     });
+  }
+
+  participate() {
+    let participants = [];
+    if (!this.data.participants)
+      this.data.participants = [];
+    else {
+      this.data.participants.forEach(participant => {
+        participants.push(`/api/user_profiles/${participant.id}`);
+      });
+      if ((this.data.participants as any).find(participant => participant.id == this.userProfile.id)) {
+        participants.splice((participants as any).indexOf(`/api/user_profiles/${this.userProfile.id}`), 1)
+      } else {
+        participants.push(`/api/user_profiles/${this.userProfile.id}`);
+      }
+    }
+    this.eventService.updateEvent(this.data.id, { participants: participants } as Event).subscribe(res => {
+      this.data = res;
+      this.data.participants && (this.data.participants as any).find(participante => participante.id == this.userProfile.id) ? this.isParticipant = true : this.isParticipant = false;
+    })
+
   }
 }

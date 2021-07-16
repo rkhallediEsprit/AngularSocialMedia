@@ -44,4 +44,8 @@ export class EventsService {
     const header = new HttpHeaders().set("content-type", "application/json");
     return this.http.delete(`${BASE_PATH}/events/${id}`, { headers: header });
   }
+
+  getEventsByUserId(id: number) {
+    return this.http.get<any>(`${BASE_PATH}/getEventsByUserId/${id}`);
+  }
 }

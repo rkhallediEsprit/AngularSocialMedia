@@ -14,22 +14,28 @@
         height: 100px;
         background-color: #d2c2a5;
         border-radius: 10px 10px 0 0;
-        .example-header-image {
-            background-image: url("../../../../assets/icons/avatar.jpg");
-            background-size: cover;
-            object-fit: cover;
-            height: 100px;
-            width: 100px;
-            border-radius: 50%;
-            flex-shrink: 0;
-            object-fit: cover;
-            border: 2px solid #d2c2a5;
-            position: absolute;
-            bottom: -50px;
-            &:hover {
-                border-color: #384949;
-                cursor: pointer;
+        label {
+            position: relative;
+            width: 100%;
+            .example-header-image {
+                object-fit: cover;
+                height: 100px;
+                width: 100px;
+                border-radius: 50%;
+                flex-shrink: 0;
+                object-fit: cover;
+                border: 2px solid #d2c2a5;
+                position: absolute;
+                bottom: -50px;
+                left: 100px;
+                &:hover {
+                    border-color: #384949;
+                    cursor: pointer;
+                }
             }
+        }
+        input {
+            display: none;
         }
     }
     mat-card-title {
@@ -52,12 +58,11 @@
     mat-card-title {
         color: #384949;
     }
-    .description{
+    .description {
         text-align: start;
         color: rgba(0, 0, 0, 0.54);
         font-size: 14px;
         padding: 10px 40px;
-
     }
 }
 .example-cardProfile {
@@ -78,21 +83,28 @@
         height: 100px;
         background-color: #d2c2a5;
         border-radius: 10px 10px 0 0;
-        .example-header-image {
-            background-image: url("../../../../assets/icons/avatar.jpg");
-            background-size: cover;
-            height: 100px;
-            width: 100px;
-            border-radius: 50%;
-            flex-shrink: 0;
-            object-fit: cover;
-            border: 2px solid #d2c2a5;
-            position: absolute;
-            bottom: -50px;
-            &:hover {
-                border-color: #384949;
-                cursor: pointer;
+        label {
+            position: relative;
+            width: 100%;
+            .example-header-image {
+                background-size: cover;
+                height: 100px;
+                width: 100px;
+                border-radius: 50%;
+                flex-shrink: 0;
+                object-fit: cover;
+                border: 2px solid #d2c2a5;
+                position: absolute;
+                bottom: -50px;
+                left: 110px;
+                &:hover {
+                    border-color: #384949;
+                    cursor: pointer;
+                }
             }
+        }
+        input {
+            display: none;
         }
     }
     mat-card-title {
@@ -115,32 +127,29 @@
     mat-card-title {
         color: #384949;
     }
-    .description-title{
+    .description-title {
         text-align: start;
         color: rgba(0, 0, 0, 0.54);
         font-size: 14px;
         padding: 10px;
         //width: 60%;
-
     }
-    .description-data{
+    .description-data {
         text-align: center;
-        color:black;
+        color: black;
         font-weight: 500;
         font-size: 20;
         //padding: 10px 10px;
         //width: 10%;
-
     }
     mat-icon {
         font-size: 12px;
         padding: 8px;
-        
     }
-    .card-button{
+    .card-button {
         display: flex;
-        justify-content: flex-end;  
-           
+        justify-content: flex-end;
+
         padding: 10px 10px;
     }
     .btn-danger {
@@ -149,9 +158,9 @@
         width: 80%;
         border-color: #384949;
 
-        &:hover{
-            background-color:#d2c2a5;
-            border-color:#d2c2a5;
+        &:hover {
+            background-color: #d2c2a5;
+            border-color: #d2c2a5;
             color: #384949;
         }
     }

@@ -9,6 +9,6 @@
     <app-post-dashboard [userdata]="userProfile" *ngIf="userProfile"></app-post-dashboard>
 </div>
   <div class="grid-item">
-    <app-event-dashboard></app-event-dashboard>
+    <app-event-dashboard #eventDashboard *ngIf="userProfile" [user]="userProfile"></app-event-dashboard>
 </div>
 </div>

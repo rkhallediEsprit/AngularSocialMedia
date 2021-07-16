@@ -5,6 +5,6 @@ export class Credentials {
     id: number;
     username: string;
     password: string;
-    isAdmin: boolean;
-    userProfile: string | UserProfile
+    roles: string[];
+    userProfile: string | UserProfile;
 }

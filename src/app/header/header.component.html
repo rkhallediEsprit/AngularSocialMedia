@@ -19,7 +19,7 @@
       <div class="actions">
         <div class="profile">
           <button (click)="goToProfile(null, true)">
-            <img src="../../assets/icons/avatar.jpg" />
+            <img [src]="currentUser && currentUser.profilePicture ?'http://localhost:8000'+currentUser.profilePicture : '../../../../assets/icons/avatar.jpg'" />
             <span>{{username | titlecase}}</span>
           </button>
         </div>
@@ -34,8 +34,8 @@
             <mat-icon matBadge="{{notif?.length}}" matBadgePosition="before" matBadgeColor="warn">notifications
             </mat-icon>
           </button>
-          <mat-menu #menu1="matMenu">
-            <div class="row" *ngFor="let notification of notif" (click)="showDetails(notification.event)">
+          <mat-menu #menu1="matMenu" style="overflow-x: hidden;">
+            <div class="row" *ngFor="let notification of notif">
               <div>
                 <mat-icon style="
                     color: #999999;
@@ -45,7 +45,8 @@
                     position: absolute;
                   " (click)="showConfirmation(notification)">clear</mat-icon>
               </div>
-              <div class="col-md-5" style="
+              <div (click)="showDetails(notification.event)" style="width: 300px;">
+                <div class="col-md-5" style="
                   width: 91px;
                   height: 24px;
                   margin: 11px 0px 0px 6px;
@@ -57,28 +58,10 @@
                   justify-content: space-evenly;
                   margin-left: 20px;
                 ">
-                <mat-icon>event</mat-icon>
-                <i class="far fa-bell" style="color: #999999"></i> Event
-              </div>
-
-              <div [ngClass]="{readed: notification.processed}" style="
-                  width: 84px;
-                  height: 20px;
-                  margin: 14px 0px 0px 20px;
-                  font-family: Lato;
-                  font-size: 14px;
-                  font-weight: 600;
-                  font-stretch: normal;
-                  font-style: normal;
-                  line-height: 1.43;
-                  letter-spacing: normal;
-                  text-align: center;
-                  color: #4c62b2;
-                  margin-left: 68px;
-                ">
-                {{ notification?.creationDate | date: "shortDate" }}
-              </div>
-              <span style="
+                  <mat-icon>event</mat-icon>
+                  <i class="far fa-bell" style="color: #999999"></i> Event
+                </div>
+                <span style="
                   width: 241px;
                   height: 22px;
                   font-family: Lato;
@@ -91,9 +74,10 @@
                   color: #000000;
                   margin-left: 20px;
                 ">
-                {{ notification?.event?.eventName}}
-              </span>
-              <hr />
+                  {{ notification?.event?.eventName}}
+                </span>
+              </div>
+              <hr style="margin: 0;" />
 
             </div>
           </mat-menu>

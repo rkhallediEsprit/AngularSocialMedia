@@ -1,10 +1,11 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { UserProfile } from 'src/app/core/models/user-profile.model';
 import { UserProfileService } from 'src/app/core/services/user-profile.service';
+import { EventDashboardComponent } from '../event-dashboard/event-dashboard.component';
 
 @Component({
   selector: 'app-profile',
@@ -12,6 +13,7 @@ import { UserProfileService } from 'src/app/core/services/user-profile.service';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
+  @ViewChild('eventDashboard', { static: false }) eventDashboard: EventDashboardComponent;
   userid = 0;
   userProfile: UserProfile;
   ismainUser: boolean;

@@ -14,12 +14,11 @@ import { MatBadgeModule, MatPaginatorModule } from "@angular/material";
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { CredentialsService } from "./core/services/credential.service";
 import { ErrorInterceptor } from "./core/services/service-api/error-interceptor.service";
-import { CreateEditEventComponent } from "./features/components/create-edit-event/create-edit-event.component";
 import { ShowConfirmationComponent } from "./features/components/show-confirmation/show-confirmation.component";
 
 @NgModule({
   declarations: [
-    AppComponent, HeaderComponent, ChangePasswordComponent, CreateEditEventComponent, ShowConfirmationComponent
+    AppComponent, HeaderComponent, ChangePasswordComponent, ShowConfirmationComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +44,7 @@ import { ShowConfirmationComponent } from "./features/components/show-confirmati
       multi: true,
     },
   ],
-  entryComponents: [ChangePasswordComponent, CreateEditEventComponent, ShowConfirmationComponent],
+  entryComponents: [ChangePasswordComponent, ShowConfirmationComponent],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

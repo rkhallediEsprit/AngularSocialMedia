@@ -30,18 +30,19 @@ export class HeaderComponent implements OnInit {
   });
   username: string;
   @Output() signout = new EventEmitter();
+  @Output() eventAdded = new EventEmitter();
   options = [];
   @ViewChild("search", { static: false }) search: DgaInputComponent;
   displayedNotif: any[];
   notif: any[];
   clickHoverMenuTrigger: MatMenuTrigger;
-
+  currentUser: UserProfile = JSON.parse(localStorage.getItem('currentUser'));
   constructor(
     private router: Router,
     public dialog: MatDialog,
     private userProfileService: UserProfileService,
     private notificationService: NotificationService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.username = JSON.parse(localStorage.getItem("loggedInUser"));
@@ -64,17 +65,26 @@ export class HeaderComponent implements OnInit {
   }
 
   goToProfile(userProfile: UserProfile, currentId: boolean) {
-    if(userProfile && userProfile.id && !currentId)
-    this.router.navigateByUrl(`profile/${userProfile.id}`);
-    else if(currentId) this.router.navigateByUrl(`profile/${JSON.parse(localStorage.getItem('currentUser'))['id']}`)
+    if (userProfile && userProfile.id && !currentId)
+      this.router.navigateByUrl(`profile/${userProfile.id}`);
+    else if (currentId) this.router.navigateByUrl(`profile/${JSON.parse(localStorage.getItem('currentUser'))['id']}`)
   }
 
   openEventDialog() {
-    this.dialog.open(CreateEditEventComponent, {
+    const dialog = this.dialog.open(CreateEditEventComponent, {
       data: {
         mode: "create",
       },
       width: "400px",
+    });
+    dialog.componentInstance.eventAdded.subscribe((data) => {
+      if (data && (this.router.url.includes('profile') || this.router.url.includes('home'))) {
+        this.eventAdded.emit(true);
+        dialog.close();
+      }
+    });
+    dialog.componentInstance.notifAdded.subscribe((data) => {
+        this.getNotification();
     });
   }
 
@@ -89,24 +99,20 @@ export class HeaderComponent implements OnInit {
       sub.unsubscribe();
     });
   }
-  createEvent() {
-    this.dialog.open(CreateEditEventComponent, {
-      data: {
-        mode: "create",
-      },
-      width: "400px",
-    });
-  }
+
   showConfirmation(notification) {
-    this.dialog.open(ShowConfirmationComponent, {
+    const dialog = this.dialog.open(ShowConfirmationComponent, {
       width: "600px",
       data: notification,
+    });
+    dialog.componentInstance.notifDeleted.subscribe(res => {
+      this.getNotification();
     });
   }
 
   getNotification() {
     this.notificationService.getNotifications().subscribe((res) => {
-      this.notif = res["hydra:member"];
+      this.notif = res;
     });
   }
   showDetails(event) {

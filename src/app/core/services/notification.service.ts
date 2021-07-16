@@ -26,7 +26,7 @@ export class NotificationService {
 
 
   updateNotification(id: number, notification: Notification): Observable<Notification> {
-    return this.http.put<Notification>(`${BASE_PATH}/notications/${id}`, notification);
+    return this.http.put<Notification>(`${BASE_PATH}/notifications/${id}`, notification);
   }
 
   

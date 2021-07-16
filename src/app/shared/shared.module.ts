@@ -67,6 +67,6 @@ import { MatButtonModule, MatProgressBarModule } from "@angular/material";
 
     SpinnerComponent,
   ],
-  entryComponents: [HttpResponseDialogComponent, CreateEditEventComponent],
+  entryComponents: [HttpResponseDialogComponent, CreateEditEventComponent, ConfirmDialogComponent],
 })
 export class SharedModule {}

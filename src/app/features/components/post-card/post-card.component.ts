@@ -24,12 +24,21 @@ export class PostCardComponent implements OnInit {
   showPost = true;
   showMenu;
   @Input() post: Post;
+  commentForms: any = [];
   constructor(private commentService: CommentService, private postService: PostService, public dialog: MatDialog) { }
 
   ngOnInit() {
-    if (this.userProfile['id'] == this.post.userProfile['id']) {
+    if (this.userProfile['id'] == this.post.userProfile['id'] || this.userProfile.roles.includes('ROLE_ADMIN')) {
       this.showMenu = true;
     } else (this.showMenu = false);
+    if (this.post && this.post.comments) {
+      this.post.comments.forEach(comment => {
+        let form = new FormGroup({
+          content: new FormControl(comment.content, Validators.required)
+        });
+        this.commentForms.push({ showForm: false, form: form });
+      });
+    }
   }
 
   getPost(id: number) {
@@ -52,6 +61,7 @@ export class PostCardComponent implements OnInit {
       this.postService.getPost(this.post.id).subscribe(res => {
         this.showComments = true;
         this.post = res;
+        this.ngOnInit();
       })
     });
   }
@@ -73,4 +83,15 @@ export class PostCardComponent implements OnInit {
     })
   }
 
+  updateComment(commentForm, index) {
+    this.commentService.updateComments(this.post.comments[index]['id'], commentForm.form.value).subscribe(res => {
+      this.post.comments[index]['content'] = res['content'];
+      commentForm.showForm = false;
+    });
+  }
+  deleteComment(i) {
+    this.commentService.deleteComments(this.post.comments[i]['id']).subscribe(res => {
+      this.post.comments.splice(i, 1);
+    })
+  }
 }

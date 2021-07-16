@@ -1,8 +1,8 @@
 import { Event } from "./event.model";
 
 export class Notification{
-    id: number;
+    id?: number;
     creationDate : Date;
-    event : Event;
+    event : Event | string;
     readed?: boolean;
 }

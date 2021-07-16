@@ -1,5 +1,5 @@
 <router-outlet *ngIf="!currentUser"></router-outlet>
 <div *ngIf="currentUser">
-    <dga-header (signout)="logout()"></dga-header>
-    <router-outlet></router-outlet>
+    <dga-header (signout)="logout()" (eventAdded)="refreshEvents()"></dga-header>
+    <router-outlet (activate)="component=$event"></router-outlet>
 </div>

@@ -7,6 +7,6 @@ export class Event {
   location: string;
   description: string;
   eventPicture: string;
-  userProfile: UserProfile;
-  participants?: string[] | UserProfile[];
+  userProfile: UserProfile | string;
+  participants?: UserProfile[] | string[];
 }

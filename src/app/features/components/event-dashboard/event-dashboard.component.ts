@@ -1,6 +1,6 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
+import { Event } from "src/app/core/models/event.model";
 import { EventsService } from "../../../core/services/event.service";
-import { EVENT } from "../../../core/services/mock-event";
 @Component({
   selector: "app-event-dashboard",
   templateUrl: "./event-dashboard.component.html",
@@ -8,16 +8,22 @@ import { EVENT } from "../../../core/services/mock-event";
 })
 export class EventDashboardComponent implements OnInit {
   dashboard: any;
-  constructor(private eventService: EventsService) {}
+  @Input() user;
+  constructor(private eventService: EventsService) { }
 
   ngOnInit() {
-    this.updateEvents();
+    if (!this.user) {
+      this.updateEvents();
+    } else {
+      this.eventService.getEventsByUserId(this.user.id).subscribe((res) => {
+        this.dashboard = res.filter((event: Event) => new Date(event.dateOfEvent) >= new Date());
+      });
+    }
   }
 
   updateEvents() {
     this.eventService.getEvents().subscribe((res) => {
-      this.dashboard = res["hydra:member"];
-      console.log(this.dashboard);
+      this.dashboard = res.filter((event: Event) => new Date(event.dateOfEvent) >= new Date());
     });
   }
 }

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { EventDashboardComponent } from '../event-dashboard/event-dashboard.component';
 
 @Component({
   selector: 'app-home',
@@ -7,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
+  @ViewChild('eventDashboard', { static: false }) eventDashboard: EventDashboardComponent;
   constructor() { }
 
   ngOnInit() {

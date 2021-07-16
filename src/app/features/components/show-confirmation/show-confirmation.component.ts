@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { NotificationService } from 'src/app/core/services/notification.service';
 
@@ -9,17 +9,23 @@ import { NotificationService } from 'src/app/core/services/notification.service'
 })
 export class ShowConfirmationComponent implements OnInit {
 
+  @Output() notifDeleted = new EventEmitter();
+
   constructor(public dialog: MatDialog, public dialogRef: MatDialogRef<ShowConfirmationComponent>,
-    @Inject(MAT_DIALOG_DATA)public data: any, private notificationService: NotificationService) { }
+    @Inject(MAT_DIALOG_DATA) public data: any, private notificationService: NotificationService) { }
 
   ngOnInit() {
   }
-  closeNotification(){
-    this.dialogRef.close()
+  closeNotification() {
+    this.dialogRef.close();
   }
-  deleteNotification(){
-this.notificationService.deletenotification(this.data.id).subscribe(res=>{})
-this.closeNotification()
+  deleteNotification() {
+    this.notificationService.updateNotification(this.data.id, { event: null } as any).subscribe(re => {
+      this.notificationService.deletenotification(this.data.id).subscribe(res => {
+        this.notifDeleted.emit(true);
+        this.closeNotification();
+      })
+    })
 
   }
 

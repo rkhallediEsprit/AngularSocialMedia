@@ -146,6 +146,10 @@
     }
 }
 
+::ng-deep .mat-menu-content:not(:empty) {
+    overflow-x: hidden;
+}
+
 @media (max-width: 1560px) {
     .header-container {
         .header-content {

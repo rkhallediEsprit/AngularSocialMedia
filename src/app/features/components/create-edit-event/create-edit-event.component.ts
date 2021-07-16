@@ -1,7 +1,9 @@
-import { Component, Inject, OnInit } from "@angular/core";
+import { Component, EventEmitter, Inject, OnInit, Output } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
 import { EMPTY } from "rxjs";
+import { Event } from "src/app/core/models/event.model";
+import { NotificationService } from "src/app/core/services/notification.service";
 import { EventsService } from "../../../core/services/event.service";
 import { UserProfileService } from "../../../core/services/user-profile.service";
 @Component({
@@ -11,20 +13,22 @@ import { UserProfileService } from "../../../core/services/user-profile.service"
 })
 export class CreateEditEventComponent implements OnInit {
   event;
-
+  userProfile = JSON.parse(localStorage.getItem('currentUser'));
   eventForm = new FormGroup({
     eventName: new FormControl(null, Validators.required),
     location: new FormControl(null, Validators.required),
     dateOfEvent: new FormControl(null, Validators.required),
-    eventPicture: new FormControl(null, Validators.required),
+    eventPicture: new FormControl(null),
     description: new FormControl(null, Validators.required),
   });
+  @Output() eventAdded = new EventEmitter();
+  @Output() notifAdded = new EventEmitter();
   constructor(
     public dialogRef: MatDialogRef<CreateEditEventComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private eventService: EventsService,
-    private userProfileService: UserProfileService
-  ) {}
+    private notificationService: NotificationService,
+  ) { }
 
   ngOnInit() {
     if (
@@ -37,18 +41,27 @@ export class CreateEditEventComponent implements OnInit {
     }
   }
   save() {
-    let event = this.eventForm.getRawValue();
-
+    let event = new Event();
+    Object.keys(this.eventForm.value).forEach(key => {
+      event[key] = this.eventForm.value[key];
+    });
+    event.userProfile = `/api/user_profiles/${this.userProfile['id']}`;
     let updateCreateEvent$ = this.eventService.createEvent(
-      this.eventForm.getRawValue()
+      event
     );
     if (this.data.mode === "edit") {
       updateCreateEvent$ = this.eventService.updateEvent(
         this.data.event.id,
-        this.eventForm.getRawValue()
+        event
       );
     }
-    updateCreateEvent$.subscribe((res) => this.eventForm.patchValue(res));
-    this.dialogRef.close();
+    updateCreateEvent$.subscribe((res) => {
+      this.eventAdded.emit(true);
+      if (this.data.mode === "create") {
+        this.notificationService.createNotification({ event: `/api/events/${res['id']}`, creationDate: new Date() } as any).subscribe(res => {
+          this.notifAdded.emit(true);
+        });
+      }
+    });
   }
 }
