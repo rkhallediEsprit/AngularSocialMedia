@@ -9,7 +9,7 @@
         <mat-icon>edit</mat-icon>
         <span>Edit</span>
       </button>
-      <button mat-menu-item>
+      <button mat-menu-item (click)="deleteEvent()">
         <mat-icon>delete</mat-icon>
         <span>Delete</span>
       </button>
@@ -23,7 +23,7 @@
   <mat-card-content>
    
     <div class="event-content">
-  <img mat-card-image [src]="data.eventPicture" >
+  <img mat-card-image src="assets/guitare.jpg" >
     <h6>
 {{data.dateOfEvent|date:'fullDate'}}
     </h6>

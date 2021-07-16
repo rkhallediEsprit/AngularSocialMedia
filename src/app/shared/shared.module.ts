@@ -1,28 +1,35 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { DgaInputComponent } from './components/dga-input/dga-input.component';
-import { ReactiveFormsModule } from '@angular/forms';
-import { MatDialogModule } from '@angular/material/dialog';
-import { MatIconModule } from '@angular/material/icon';
-import { SpinnerComponent } from './components/spinner/spinner.component';
-import { HttpResponseDialogComponent } from './components/http-response-dialog/http-response-dialog.component';
-import {MatMenuModule} from '@angular/material/menu';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatAutocompleteModule} from '@angular/material/autocomplete';
-import {MatCardModule} from '@angular/material/card';
-import {MatListModule} from '@angular/material';
-import {MatTabsModule} from '@angular/material/tabs';
-
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { DgaInputComponent } from "./components/dga-input/dga-input.component";
+import { ReactiveFormsModule } from "@angular/forms";
+import { MatDialogModule } from "@angular/material/dialog";
+import { MatIconModule } from "@angular/material/icon";
+import { SpinnerComponent } from "./components/spinner/spinner.component";
+import { HttpResponseDialogComponent } from "./components/http-response-dialog/http-response-dialog.component";
+import { MatMenuModule } from "@angular/material/menu";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatAutocompleteModule } from "@angular/material/autocomplete";
+import { MatCardModule } from "@angular/material/card";
+import { MatListModule } from "@angular/material";
+import { MatTabsModule } from "@angular/material/tabs";
+import { ConfirmDialogComponent } from "./confirm-dialog/confirm-dialog.component";
+import { CreateEditEventComponent } from "../features/components/create-edit-event/create-edit-event.component";
 
 @NgModule({
-  declarations: [DgaInputComponent, SpinnerComponent, HttpResponseDialogComponent],
+  declarations: [
+    DgaInputComponent,
+    SpinnerComponent,
+    HttpResponseDialogComponent,
+    ConfirmDialogComponent,
+    CreateEditEventComponent,
+  ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
 
     /*
-     *Angular Material Modules 
-    */
+     *Angular Material Modules
+     */
     MatDialogModule,
     MatIconModule,
     MatMenuModule,
@@ -30,16 +37,15 @@ import {MatTabsModule} from '@angular/material/tabs';
     MatAutocompleteModule,
     MatCardModule,
     MatListModule,
-    MatTabsModule
-
+    MatTabsModule,
   ],
   exports: [
     DgaInputComponent,
     ReactiveFormsModule,
 
     /*
-     *Angular Material Modules 
-    */
+     *Angular Material Modules
+     */
     MatDialogModule,
     MatIconModule,
     MatMenuModule,
@@ -49,12 +55,9 @@ import {MatTabsModule} from '@angular/material/tabs';
     MatListModule,
     HttpResponseDialogComponent,
     MatTabsModule,
-
-
-    SpinnerComponent
+    CreateEditEventComponent,
+    SpinnerComponent,
   ],
-  entryComponents: [
-    HttpResponseDialogComponent
-  ]
+  entryComponents: [HttpResponseDialogComponent, CreateEditEventComponent],
 })
-export class SharedModule { }
+export class SharedModule {}
