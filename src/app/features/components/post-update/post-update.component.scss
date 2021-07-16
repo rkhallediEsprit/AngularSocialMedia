@@ -1,32 +1,62 @@
 h2 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+mat-icon {
+  cursor: pointer;
+}
+
+mat-dialog-actions {
+  padding: 20px;
+  button {
+    margin-bottom: 10px;
+    height: 50px;
+    border: none;
+    color: #efe4d0;
+    background: #384949;
+    font-size: 22px;
+    border-radius: 4px;
+  }
+  .disabled {
+    background-color: gray;
+    cursor: default;
+    pointer-events: none;
+  }
+}
+
+dga-input {
+  margin-bottom: 20px;
+}
+
+.postForm {
+  img {
+    max-width: 500px;
+    max-height: 500px;
+    margin: auto;
+  }
+  dga-input:first-child {
+    margin-bottom: 10px;
+  }
+  input {
+    display: none;
+  }
+  label {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: flex-start;
+    width: 83%;
+    color: #384949;
+    font-weight: 500;
   }
-  
+  span {
+    &:hover {
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  }
   mat-icon {
-    cursor: pointer;
+    margin-right: 5px;
   }
-  
-  mat-dialog-actions {
-    padding: 20px;
-    button {
-      margin-bottom: 10px;
-      height: 50px;
-      border: none;
-      color: #efe4d0;
-      background: #384949;
-      font-size: 22px;
-      border-radius: 4px;
-    }
-    .disabled {
-      background-color: gray;
-      cursor: default;
-      pointer-events: none;
-    }
-  }
-  
-  dga-input {
-    margin-bottom: 20px;
-  }
-  
+}

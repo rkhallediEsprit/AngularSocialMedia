@@ -27,12 +27,12 @@ export class PostCardComponent implements OnInit {
   constructor(private commentService: CommentService, private postService: PostService, public dialog: MatDialog) { }
 
   ngOnInit() {
-    if(this.userProfile['id']==this.post.userProfile['id']){
-      this.showMenu=true;
-    }else(this.showMenu=false);
+    if (this.userProfile['id'] == this.post.userProfile['id']) {
+      this.showMenu = true;
+    } else (this.showMenu = false);
   }
 
-  getPost(id: number){
+  getPost(id: number) {
     this.postService.getPost(id).subscribe(res => {
       this.post = res;
     })
@@ -50,6 +50,7 @@ export class PostCardComponent implements OnInit {
     this.commentService.createComments(comment).subscribe(res => {
       this.commentForm.reset();
       this.postService.getPost(this.post.id).subscribe(res => {
+        this.showComments = true;
         this.post = res;
       })
     });
@@ -61,10 +62,11 @@ export class PostCardComponent implements OnInit {
       width: "600px",
     });
     dialog.afterClosed().subscribe(res => {
-      this.getPost(res);
+      if (res.saved)
+        this.getPost(res.post);
     })
   }
-  deletePost(){
+  deletePost() {
     this.postService.deletePosts(this.post.id).subscribe(res => {
       this.post = res;
       this.showPost = false;

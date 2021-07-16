@@ -34,7 +34,6 @@ export class ProfileCardComponent implements OnInit {
       this.userdata = data
       dialogRef.close()
     });
-    
     dialogRef.componentInstance.isPutting.subscribe((data: any) => {
       this.loading.emit(data);
     });
@@ -48,4 +47,7 @@ export class ProfileCardComponent implements OnInit {
     this.userdata = user;
   }
 
+  navigateToProfile() {
+    this.router.navigate(['profile', this.currentUser['id']]);
+  }
 }

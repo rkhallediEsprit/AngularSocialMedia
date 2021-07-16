@@ -8,11 +8,27 @@
         <div class="row">
             <dga-input class="col-md-12" widthClass="col-md-12" type="textarea" placeholder="description"
                 [form]="postForm" controlName="description" [required]="true"></dga-input>
+            <label for="file1" *ngIf="!imagePath">
+                <mat-icon>file_upload</mat-icon>
+                <span>Upload File</span>
+            </label>
+            <mat-progress-bar mode="determinate" value="{{progress}}" *ngIf="!imagePath && progress>0">
+            </mat-progress-bar>
+            <input class="col-md-10" type="file" id="file1" formControlName="file"
+                (change)="handleFile($event.target.files[0])">
+            <img *ngIf="imagePath && !imagePath.includes('mp4')" [src]="'http://localhost:8000'+imagePath">
+            <video *ngIf="imagePath && imagePath.includes('mp4')" width="500" height="500" controls>
+                <source [src]="'http://localhost:8000'+imagePath">
+            </video>
+            <label *ngIf="imagePath" (click)="deleteImage()">
+                <mat-icon>delete</mat-icon><span>Delete Image</span>
+            </label>
         </div>
     </div>
 </mat-dialog-content>
 <hr>
 <mat-dialog-actions align="center">
-    <button mat-button cdkFocusInitial class="col-md-12" [ngClass]="{disabled: postForm.invalid}"
-        [disabled]="postForm.invalid" (click)="save()">Save</button>
+    <button mat-button cdkFocusInitial class="col-md-12"
+        [ngClass]="{disabled:(!imagePath && !postForm.value.description)}"
+        [disabled]="(!imagePath && !postForm.value.description)" (click)="save()">Save</button>
 </mat-dialog-actions>

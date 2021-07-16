@@ -3,6 +3,6 @@
 export class Attachment {
 
     id: number;;
-    urlAttachment: string;
+    url_attachment: string;
     userProfile: string
 }

@@ -63,9 +63,10 @@ export class HeaderComponent implements OnInit {
     this.signout.emit(true);
   }
 
-  goToProfile(userProfile: UserProfile) {
-    if (userProfile && userProfile.id)
-      this.router.navigateByUrl(`profile/${userProfile.id}`);
+  goToProfile(userProfile: UserProfile, currentId: boolean) {
+    if(userProfile && userProfile.id && !currentId)
+    this.router.navigateByUrl(`profile/${userProfile.id}`);
+    else if(currentId) this.router.navigateByUrl(`profile/${JSON.parse(localStorage.getItem('currentUser'))['id']}`)
   }
 
   openEventDialog() {
