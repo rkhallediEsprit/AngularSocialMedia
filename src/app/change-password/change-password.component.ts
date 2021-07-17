@@ -18,9 +18,27 @@ export class ChangePasswordComponent implements OnInit {
 
   @Output() changeCredential = new EventEmitter();
 
+  usernameError = "Username Already Exists";
+  showUsernameExistance = false;
+  showPasswordError = false;
+
   constructor(private dialogRef: MatDialogRef<RegisterComponent>, @Inject(MAT_DIALOG_DATA) public data: any, private credentialsService: CredentialsService) { }
 
   ngOnInit() {
+    this.credentialsForm.controls.username.valueChanges.subscribe(value => {
+      if (value && value.trim() != "")
+        this.credentialsService.checkUsername(value).subscribe(res => {
+          res && value !== JSON.parse(localStorage.getItem('loggedInUser')) ? this.showUsernameExistance = true : this.showUsernameExistance = false;
+        }, err => {
+          this.showUsernameExistance = false
+        });
+    });
+    this.credentialsForm.controls.password.valueChanges.subscribe(value => {
+      if (value) {
+        let regex = new RegExp("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$");
+        !regex.test(value) ? this.showPasswordError = true : this.showPasswordError = false;
+      }
+    });
   }
 
   changeCredentials() {

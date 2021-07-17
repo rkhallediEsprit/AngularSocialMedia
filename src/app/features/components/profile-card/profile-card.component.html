@@ -3,7 +3,7 @@
     <div class="profile-header">
       <label for="upload">
         <img class="example-header-image"
-          [src]="currentUser && currentUser.profilePicture ?'http://localhost:8000'+currentUser.profilePicture : '../../../../assets/icons/avatar.jpg'" />
+          [src]="userdata && userdata.profilePicture ?'http://localhost:8000'+userdata.profilePicture : '../../../../assets/icons/avatar.jpg'" />
       </label>
       <input *ngIf="ismainUser" id="upload" type="file" [formControl]="upload"
         (change)="handleFile($event.target.files[0])">

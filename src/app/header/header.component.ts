@@ -89,7 +89,10 @@ export class HeaderComponent implements OnInit {
   }
 
   openCredentialsDialog() {
-    const dialog = this.dialog.open(ChangePasswordComponent);
+    const dialog = this.dialog.open(ChangePasswordComponent,{
+      width: '600px',
+      height: '470px'
+    });
     const sub = dialog.componentInstance.changeCredential.subscribe((data) => {
       if (data) {
         this.logout();
