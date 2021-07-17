@@ -61,6 +61,7 @@ import { EditprofileComponent } from "./components/editprofile/editprofile.compo
     ShowEventComponent,
     HttpResponseDialogComponent,
     EditprofileComponent,
+    PostUpdateComponent
   ],
 })
 export class FeaturesModule {}
