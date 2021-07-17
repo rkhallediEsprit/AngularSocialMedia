@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { Event } from './core/models/event.model';
 import { EventsService } from './core/services/event.service';
 import { AuthenticationService } from './core/services/service-api/authentication.service';
 
@@ -28,7 +29,7 @@ export class AppComponent {
 
   refreshEvents() {
     this.eventService.getEvents().subscribe(res => {
-      this.component['eventDashboard']['dashboard'] = res;
+      this.component['eventDashboard']['dashboard'] = res.filter((event: Event) => new Date(event.dateOfEvent) >= new Date());
     })
   }
 
