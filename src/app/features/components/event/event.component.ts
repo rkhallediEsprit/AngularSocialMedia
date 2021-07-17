@@ -59,11 +59,17 @@ export class EventComponent implements OnInit {
     this.dialogService.dialogRef.afterClosed().subscribe(() => {
       this.notificationService.getNotifications().subscribe(res => {
         let notif = res.find(noti => noti.event['id'] == this.data.id);
-        this.notificationService.updateNotification(notif.id, {event: null} as any).subscribe(res => {
+        if(notif){
+          this.notificationService.updateNotification(notif.id, {event: null} as any).subscribe(res => {
+            this.eventService.deleteEvent(this.data.id).subscribe(re =>{
+              this.updateEvents.emit(true);
+            });
+          })
+        }else{
           this.eventService.deleteEvent(this.data.id).subscribe(re =>{
             this.updateEvents.emit(true);
           });
-        })
+        }
       });
     });
   }
