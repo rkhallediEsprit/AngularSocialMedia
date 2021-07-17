@@ -1,13 +1,11 @@
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { MatDialog } from "@angular/material";
-import { EVENT } from "../../../core/services/mock-event";
 import { CreateEditEventComponent } from "../create-edit-event/create-edit-event.component";
 import { ShowEventComponent } from "../show-event/show-event.component";
 import { ConfirmDialogService } from "../../../shared/confirm-dialog/confirm-dialog.service";
 import { EventsService } from "../../../core/services/event.service";
-import { switchMap } from "rxjs/operators";
-import { EMPTY } from "rxjs";
 import { Event } from "src/app/core/models/event.model";
+import { NotificationService } from "src/app/core/services/notification.service";
 @Component({
   selector: "app-event",
   templateUrl: "./event.component.html",
@@ -15,18 +13,22 @@ import { Event } from "src/app/core/models/event.model";
 })
 export class EventComponent implements OnInit {
   @Input() data: Event;
-  @Output()
-  updateEvents = new EventEmitter();
+  @Output() updateEvents = new EventEmitter();
   userProfile = JSON.parse(localStorage.getItem('currentUser'));
   event;
   isParticipant;
+  showMenu;
   constructor(
     public dialogService: ConfirmDialogService,
     public dialog: MatDialog,
-    private eventService: EventsService
+    private eventService: EventsService,
+    private notificationService: NotificationService
   ) { }
 
   ngOnInit() {
+    if (this.userProfile['id'] == this.data.userProfile['id'] || this.userProfile.roles.includes('ROLE_ADMIN')) {
+      this.showMenu = true;
+    } else (this.showMenu = false);
     this.data.participants && (this.data.participants as any).find(participante => participante.id == this.userProfile.id) ? this.isParticipant = true : this.isParticipant = false;
   }
 
@@ -54,16 +56,16 @@ export class EventComponent implements OnInit {
       confirmText: "Yes,Delete",
     };
     this.dialogService.open(options);
-    this.dialogService.dialogRef
-      .afterClosed()
-      .pipe(
-        switchMap((dialogresult) =>
-          dialogresult ? this.eventService.deleteEvent(this.data.id) : EMPTY
-        )
-      )
-      .subscribe((_) => {
-        this.updateEvents.emit();
+    this.dialogService.dialogRef.afterClosed().subscribe(() => {
+      this.notificationService.getNotifications().subscribe(res => {
+        let notif = res.find(noti => noti.event['id'] == this.data.id);
+        this.notificationService.updateNotification(notif.id, {event: null} as any).subscribe(res => {
+          this.eventService.deleteEvent(this.data.id).subscribe(re =>{
+            this.updateEvents.emit(true);
+          });
+        })
       });
+    });
   }
   ShowDetails() {
     console.log(this.data);

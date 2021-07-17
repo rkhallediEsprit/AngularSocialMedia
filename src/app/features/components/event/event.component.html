@@ -1,6 +1,6 @@
 <mat-card *ngIf="data" class="event-card">
   <mat-card-header class="event-header">
-    <button mat-icon-button [matMenuTriggerFor]="menu" class='event-menu'>
+    <button *ngIf="showMenu" mat-icon-button [matMenuTriggerFor]="menu" class='event-menu'>
       <mat-icon>more_vert</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
